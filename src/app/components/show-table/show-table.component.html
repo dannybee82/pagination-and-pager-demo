@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-4"></div>
         <div class="col-4">
             <app-pager></app-pager>
@@ -8,12 +8,14 @@
             <app-pagination></app-pagination>
         </div>
     </div>
-    <table class="table table-striped" *ngIf="this.allPersons != undefined">
+    <table class="table table-striped table-sm" *ngIf="this.allPersons != undefined">
         <thead>
-            <th>Firstname:</th>
-            <th>Lastname:</th>
+            <tr>
+                <th>Firstname:</th>
+                <th>Lastname:</th>
+            </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
             <tr *ngFor="let person of this.allPersons">
                 <td>
                     {{ person.firstName }}

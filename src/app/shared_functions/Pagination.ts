@@ -76,7 +76,7 @@ export class Pagination {
   }
     
   calculateEnd(start: number, allPersonsLength: number, recordsPerPage: number) : number {
-      let end: number = (start + recordsPerPage < allPersonsLength) ?  (start + recordsPerPage): start + (allPersonsLength % recordsPerPage);
+      let end: number = (start + recordsPerPage <= allPersonsLength) ?  (start + recordsPerPage): start + (allPersonsLength % recordsPerPage);
       return end;
   }
    

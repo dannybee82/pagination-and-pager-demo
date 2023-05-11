@@ -19,11 +19,10 @@ export class PersonsService {
 
   generateRandomPersons(amount: number) : void {
     for(let i = 0; i < amount; i++) {
-      let randomIndex01: number = Math.random() * this._maxRandomNumber;
-      let randomIndex02: number = Math.random() * this._maxRandomNumber;
-      
-      let p: Person = new Person(this._firstNames[randomIndex01], this._lastNames[randomIndex02]);
-      this._allPersons.push(p);
+      let randomIndex01: number = Math.floor(Math.random() * this._maxRandomNumber);
+      let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);
+
+      this._allPersons.push(new Person(this._firstNames[randomIndex01], this._lastNames[randomIndex02]));
     }
   }
 

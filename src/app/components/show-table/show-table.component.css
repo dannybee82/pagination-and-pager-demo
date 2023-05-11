@@ -1,0 +1,7 @@
+table thead tr th:hover {
+    cursor: pointer;
+}
+
+table tbody tr td:hover {
+    cursor: pointer;
+}

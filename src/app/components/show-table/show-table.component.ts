@@ -21,6 +21,13 @@ export class ShowTableComponent extends Pagination {
 
   constructor(private personsService: PersonsService, pageService: PageService) {
     super(pageService);
+    
+    //Listen for changes.
+    this.getCurrentData().subscribe({
+      next: (result) => {
+        this.allPersons = result;
+      }
+    });
   }
 
   ngOnInit() {
@@ -28,7 +35,8 @@ export class ShowTableComponent extends Pagination {
     this.allPersons = this.personsService.getAllPersons();
 
     //Set data for pagination.
-    this.setData(this.allPersons);
+    this.setData(this.allPersons);    
+    this.updatePagination();
   }
 
 }
