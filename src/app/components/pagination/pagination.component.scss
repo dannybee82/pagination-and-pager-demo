@@ -1,0 +1,9 @@
+li.page-item a.page-link:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.item-active {
+    background-color: var(--bs-primary);
+    color: #fff;
+}

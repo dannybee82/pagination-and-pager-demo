@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <app-pager></app-pager>
+        </div>
+        <div class="col-4">
+            <app-pagination></app-pagination>
+        </div>
+    </div>
+    <table class="table table-striped" *ngIf="this.allPersons != undefined">
+        <thead>
+            <th>Firstname:</th>
+            <th>Lastname:</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of this.allPersons">
+                <td>
+                    {{ person.firstName }}
+                </td>
+                <td>
+                    {{ person.lastName }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
