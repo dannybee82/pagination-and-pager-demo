@@ -14,7 +14,7 @@ export class PageService {
 
   private _defaultCurrentPageIndex = 0;
   private _currentPageIndex: ReplaySubject<number>;
-  
+
   constructor() {
     this._recordsPerPage = new ReplaySubject<number>(this._defaultRecordsPerPage);
     this._amountOfPages = new ReplaySubject<number>(0);

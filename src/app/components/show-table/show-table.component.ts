@@ -28,6 +28,17 @@ export class ShowTableComponent extends Pagination {
         this.allPersons = result;
       }
     });
+
+    //Listen for changes.
+    this.personsService.getUpdatePersons().subscribe({
+      next: (result) => {
+        if(result) {
+          this.allPersons = this.personsService.getAllPersons();
+          this.setData(this.allPersons);    
+          this.updatePagination();
+        }
+      }
+    });
   }
 
   ngOnInit() {

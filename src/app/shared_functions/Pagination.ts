@@ -83,7 +83,7 @@ export class Pagination {
   setData(data: any) {
     this._originalData = data;
 
-    if(this._originalData != null) {
+    if(this._originalData != undefined) {
       this._workData = this._originalData;
       let pages = this.calculatePages(this._originalData, this._recordsPerPage);
       this.pageService.setPagesAmount(pages);
@@ -91,7 +91,7 @@ export class Pagination {
   }
 
   updatePagination() : void {
-    if(this._originalData != null) {  
+    if(this._originalData != undefined) {  
       this._workData = this._originalData;    
       this._workData = this.limitRecords(this._workData, this._recordsPerPage, this._currentPageIndex);
       this._data.next(this._workData);
@@ -100,6 +100,23 @@ export class Pagination {
 
   getCurrentData() : ReplaySubject<any> {
     return this._data;
+  }
+
+  getTotalRecords() : number {
+    if(this._originalData != undefined) {
+      return this._originalData.length;
+    }
+
+    return 0;
+  }
+
+  getCurrentShowing() : string {
+    if(this._workData != undefined) {
+      let start: number = this.calculateStart(this._recordsPerPage, this._currentPageIndex)
+      return (start + 1) + " - " + this.calculateEnd(start, this._originalData.length, this._recordsPerPage); 
+    }
+
+    return "";
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 
 //Models.
 import { Person } from '../models/Person'; 
@@ -13,21 +14,37 @@ export class PersonsService {
 
   private _maxRandomNumber: number = 50;
 
+  private _personNumber: number = 1;
+
   private _allPersons: Person[] = [];
 
-  constructor() { }
+  private _updatePersons: ReplaySubject<boolean>;
+
+  constructor() {
+    this._updatePersons = new ReplaySubject<boolean>();
+  }
 
   generateRandomPersons(amount: number) : void {
     for(let i = 0; i < amount; i++) {
       let randomIndex01: number = Math.floor(Math.random() * this._maxRandomNumber);
-      let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);
+      let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);     
+      let randomAge: number = Math.floor(Math.random() * (65 - 18) + 18) ;
 
-      this._allPersons.push(new Person(this._firstNames[randomIndex01], this._lastNames[randomIndex02]));
+      this._allPersons.push(new Person(this._personNumber, this._firstNames[randomIndex01], this._lastNames[randomIndex02], randomAge));
+      this._personNumber++;;
     }
   }
 
   getAllPersons() : Person[] {
     return this._allPersons;
+  }
+
+  setUpdatePersons(value: boolean) : void {
+    this._updatePersons.next(value)
+  }
+  
+  getUpdatePersons() : ReplaySubject<boolean> {
+    return this._updatePersons;
   }
 
 }
