@@ -11,8 +11,8 @@
             <a class="page-link" title="Go to page: {{ page }}" *ngIf="this.isCurrentPageIndex(page)" [class.item-active]="this.isCurrentPageIndex(page)">{{ page }}</a>
         </li>
 
-        <li class="page-item" *ngIf="this.amountOfPages >= 2" (click)="this.nextPage()">
-            <a class="page-link" title="Next Page">
+        <li class="page-item" *ngIf="this.amountOfPages >= 2">
+            <a class="page-link" title="Next Page" (click)="this.nextPage()">
                 <i class="bi bi-caret-right"></i>
             </a>
         </li>

@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row mt-2 mb-2" *ngIf="this.allPersons?.length ?? 0 > 0">
-        <div class="col-4">
+        <div class="col-5">
             <div class="col-auto mt-1">
                 Total Persons: <span class="fw-bold">{{ this.getTotalRecords() }}</span> Showing: <span class="fw-bold">#{{ this.getCurrentShowing() }}</span>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <app-pager></app-pager>
         </div>
         <div class="col-4">
