@@ -10,7 +10,7 @@ import { PageService } from '../services/page.service';
 import { ShowTableComponent } from './show-table/show-table.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PagerComponent } from './pager/pager.component';
-import { AddPersonsFormComponent } from './add-persons/add-persons-form/add-persons-form.component';
+import { AddPersonsFormComponent } from './add-persons-form/add-persons-form.component';
 import { ScrollToTopAdminComponent } from './scroll-to-top/scroll-to-top.component';
 
 @NgModule({

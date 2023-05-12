@@ -16,9 +16,13 @@ export class PagerComponent {
     this.pageService.setRecordsPerPage(this.productsPerPage);
   }
 
-  changePageSize(size: string) {
+  changePageSize(size: string) {    
     let parsed = parseInt(size);
-    this.pageService.setRecordsPerPage(parsed);
+
+    if(this.productsPerPage != parsed) {
+      this.productsPerPage = parsed;
+      this.pageService.setRecordsPerPage(parsed);
+    }    
   }
 
 }

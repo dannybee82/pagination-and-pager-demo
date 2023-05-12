@@ -22,4 +22,21 @@ export class AddPersonsFormComponent {
     }
   }
 
+  onlyNumbers(input: any) : string {
+    if(isNaN(input) || input === "0") {
+      return "1";
+    }
+
+    if(input !== '' && input != undefined) {
+      const reg = /^\d+$/;
+      return (input.match(reg)) ? input : "1";
+    }
+
+    if(parseInt(input) <= 0) {
+      return "1";
+    }
+
+    return "1";
+  }
+
 }

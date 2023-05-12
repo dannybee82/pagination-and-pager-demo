@@ -25,13 +25,15 @@ export class PersonsService {
   }
 
   generateRandomPersons(amount: number) : void {
-    for(let i = 0; i < amount; i++) {
-      let randomIndex01: number = Math.floor(Math.random() * this._maxRandomNumber);
-      let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);     
-      let randomAge: number = Math.floor(Math.random() * (65 - 18) + 18) ;
+    if(amount > 0) {
+      for(let i = 0; i < amount; i++) {
+        let randomIndex01: number = Math.floor(Math.random() * this._maxRandomNumber);
+        let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);     
+        let randomAge: number = Math.floor(Math.random() * (65 - 18) + 18) ;
 
-      this._allPersons.push(new Person(this._personNumber, this._firstNames[randomIndex01], this._lastNames[randomIndex02], randomAge));
-      this._personNumber++;;
+        this._allPersons.push(new Person(this._personNumber, this._firstNames[randomIndex01], this._lastNames[randomIndex02], randomAge));
+        this._personNumber++;;
+      }
     }
   }
 

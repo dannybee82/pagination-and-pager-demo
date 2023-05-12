@@ -5,7 +5,7 @@
                 <label for="amount" class="form-label fw-bold">Add number of Persons:</label>
             </div>
             <div class="col-2 float-start p-2">
-                <input type="number" name="amount" [(ngModel)]="this.amountOfPersons" class="form-control" min="1">            
+                <input type="number" name="amount" [(ngModel)]="this.amountOfPersons" class="form-control" min="1" (keyup)="inputValue.value = this.onlyNumbers($any($event).target.value)" #inputValue>
             </div>
             <div class="col-auto float-start p-2">
                 <button type="submit" class="btn bg-success text-light">

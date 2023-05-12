@@ -19,6 +19,8 @@ export class ShowTableComponent extends Pagination {
 
   public allPersons?: Person[];
 
+  public generatePersons: number = 25;
+
   constructor(private personsService: PersonsService, pageService: PageService) {
     super(pageService);
     
@@ -42,12 +44,16 @@ export class ShowTableComponent extends Pagination {
   }
 
   ngOnInit() {
-    this.personsService.generateRandomPersons(25);    
+    if(this.generatePersons < 0) {
+      this.generatePersons = 0;
+    }
+
+    this.personsService.generateRandomPersons(this.generatePersons);    
     this.allPersons = this.personsService.getAllPersons();
 
     //Set data for pagination.
     this.setData(this.allPersons);    
-    this.updatePagination();
+    this.updatePagination();     
   }
 
 }
