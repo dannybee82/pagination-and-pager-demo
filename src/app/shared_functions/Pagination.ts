@@ -45,6 +45,8 @@ export class Pagination {
 
   calculatePages(obj: any, recordsPerPage: number) : number {
       if(obj != undefined) {
+        recordsPerPage = this.checkNumber(recordsPerPage, 1);
+
         let pages: number = Math.floor(obj.length / recordsPerPage);
     
         if(obj.length % recordsPerPage != 0) {
@@ -54,30 +56,38 @@ export class Pagination {
         return pages;
       }
         
-      return -1;
+      return 0;
   }
 
-  limitRecords(obj: any, recordsPerPage: number, currentPageIndex: number) : any {
+  limitRecords(obj: any, recordsPerPage: number, currentPageIndex: number) : any | undefined {
       if(obj != undefined) {
+        recordsPerPage = this.checkNumber(recordsPerPage, 1);
+        currentPageIndex = this.checkNumber(currentPageIndex, 0);
+
         let pages: number = this.calculatePages(obj, recordsPerPage);      
         this.pageService.setPagesAmount(pages);    
     
-        let start: number = this.calculateStart(recordsPerPage, currentPageIndex );
+        let start: number = this.calculateStart(recordsPerPage, currentPageIndex);
         let end: number = this.calculateEnd(start, obj.length, recordsPerPage);
     
         obj = obj.slice(start, end);
         return obj;
       }
+
+      return undefined;
   }
 
   calculateStart(recordsPerPage: number, currentPageIndex: number) : number {
-      let start: number = (currentPageIndex == -1) ? 0 : currentPageIndex;
-      return start *= recordsPerPage;
+    recordsPerPage = this.checkNumber(recordsPerPage, 1);
+    let start: number = (currentPageIndex == -1) ? 0 : currentPageIndex;
+    return start *= recordsPerPage;
   }
     
-  calculateEnd(start: number, allPersonsLength: number, recordsPerPage: number) : number {
-      let end: number = (start + recordsPerPage <= allPersonsLength) ?  (start + recordsPerPage): start + (allPersonsLength % recordsPerPage);
-      return end;
+  calculateEnd(start: number, dataLength: number, recordsPerPage: number) : number {
+    start = this.checkNumber(start, 0);
+    dataLength = this.checkNumber(dataLength, 0);
+    recordsPerPage = this.checkNumber(recordsPerPage, 1);
+    return (start + recordsPerPage <= dataLength) ? (start + recordsPerPage) : start + (dataLength % recordsPerPage);
   }
    
   setData(data: any) {
@@ -117,6 +127,10 @@ export class Pagination {
     }
 
     return "";
+  }
+
+  private checkNumber(value: number, defaultNumber: number) : number {
+    return (value <= 0) ? defaultNumber : value;
   }
 
 }

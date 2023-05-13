@@ -9,7 +9,7 @@ export class PageService {
   private _defaultRecordsPerPage: number = 10;
   private _recordsPerPage: ReplaySubject<number>;
 
-  private _defaultAmountOfPage = 0;
+  private _defaultAmountOfPages = 0;
   private _amountOfPages: ReplaySubject<number>;
 
   private _defaultCurrentPageIndex = 0;
@@ -21,8 +21,8 @@ export class PageService {
     this._currentPageIndex = new ReplaySubject<number>(0);
   }
 
-  setRecordsPerPage(recordsPerPage: number) : void {
-    this._recordsPerPage.next(recordsPerPage);
+  setRecordsPerPage(amount: number) : void {
+    this._recordsPerPage.next(this.checkNumber(amount));
   }
 
   getRecordsPerPage() : ReplaySubject<number> {
@@ -30,7 +30,7 @@ export class PageService {
   }
 
   setPagesAmount(amount: number) : void {
-    this._amountOfPages.next(amount);
+    this._amountOfPages.next(this.checkNumber(amount));
   }
 
   getPagesAmount() : ReplaySubject<number> {
@@ -38,7 +38,7 @@ export class PageService {
   }
 
   setCurrentPageIndex(index: number) : void {
-    this._currentPageIndex.next(index);
+    this._currentPageIndex.next(this.checkNumber(index));
   }
 
   getCurrentPageIndex() : ReplaySubject<number> {
@@ -47,12 +47,16 @@ export class PageService {
 
   resetAll() : void {
     this.setRecordsPerPage(this._defaultRecordsPerPage);
-    this.setPagesAmount(this._defaultAmountOfPage);
+    this.setPagesAmount(this._defaultAmountOfPages);
     this.setCurrentPageIndex(this._defaultCurrentPageIndex);
   }
 
   getDefaultRecordsPerPage() : number {
     return this._defaultRecordsPerPage;
+  }
+
+  private checkNumber(value: number) : number {
+    return (value > 0) ? value : 0;
   }
 
 }
