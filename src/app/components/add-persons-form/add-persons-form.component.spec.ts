@@ -12,41 +12,41 @@ describe('AddPersonsFormComponent', () => {
   let component: AddPersonsFormComponent;
   let fixture: ComponentFixture<AddPersonsFormComponent>;
 
-  let inputs: any[] = [
-    '',
-    '0',
-    'a',
-    '!',
-    '-1',
-    '5',
-    '10',
-    '15',
-    '25'
-  ];
+  // let inputs: any[] = [
+  //   '',
+  //   '0',
+  //   'a',
+  //   '!',
+  //   '-1',
+  //   '5',
+  //   '10',
+  //   '15',
+  //   '25'
+  // ];
 
-  let expectations: number[] = [
-    1,
-    1,
-    1,
-    1,
-    1,
-    5,
-    10,
-    15,
-    25
-  ];
+  // let expectations: number[] = [
+  //   1,
+  //   1,
+  //   1,
+  //   1,
+  //   1,
+  //   5,
+  //   10,
+  //   15,
+  //   25
+  // ];
 
-  let accumulative: number[] = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    10,
-    20,
-    35,
-    60
-  ];
+  // let accumulative: number[] = [
+  //   1,
+  //   2,
+  //   3,
+  //   4,
+  //   5,
+  //   10,
+  //   20,
+  //   35,
+  //   60
+  // ];
 
   beforeEach(async() => {
     TestBed.configureTestingModule({
@@ -64,60 +64,96 @@ describe('AddPersonsFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Input Field Test: Input -> input-value', fakeAsync(() => {    
-    for(let i = 0; i < inputs.length; i++) {
+  it('Input Field Test: Input -> input-value', fakeAsync(() => { 
+    let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+    
+    for(let i = 0; i < keypresses.length; i++) {
       const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
-      inputField.nativeElement.value = inputs[i];
-      inputField.nativeElement.dispatchEvent(new Event('keyup'));
+
+      const event = new KeyboardEvent('keypress', {
+          key: keypresses[i],
+          cancelable: true
+      });
+
+      let val: string = "1";
+
+      if(component.numbersOnly(event)) {
+        val += keypresses[i];
+      }
+
+      inputField.nativeElement.value = val;
 
       fixture.detectChanges();
       tick();
 
-      expect(parseInt(inputField.nativeElement.value)).toBe(expectations[i]); 
-    }
-       
+      expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
+    }       
   }));
 
   it('Input Field Test: Component -> input-value', fakeAsync(() => {
-    for(let i = 4; i < expectations.length; i++) {
-      component.amountOfPersons = expectations[i];    
+    let testNumbers: number[] = [1, 2, 3, 4, 5];
+    let testExpectations: number[] = [1, 2, 3, 4, 5];
+
+    for(let i = 0; i < testNumbers.length; i++) {
+      component.amountOfPersons = testNumbers[i];    
       fixture.detectChanges();
       tick();
   
       const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
   
-      expect(parseInt(inputField.nativeElement.value)).toBe(expectations[i]); 
+      expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
     }      
   }));
 
   it('Input Field Test: Input -> component-value', fakeAsync(async() => {
-    for(let i = 0; i < inputs.length; i++) {
+    let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+
+    for (let i = 0; i < keypresses.length; i++) {
       const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
-      inputField.nativeElement.value = inputs[i];
-      inputField.nativeElement.dispatchEvent(new Event('keyup'));
-      fixture.detectChanges();
-      tick();
-      
+
+      const event = new KeyboardEvent('keypress', {
+        key: keypresses[i],
+        cancelable: true
+      });
+
+      let val: string = "1";
+
+      if (component.numbersOnly(event)) {
+        val += keypresses[i];
+      }
+
+      inputField.nativeElement.value = val;
       inputField.nativeElement.dispatchEvent(new Event('input'));
-      
+
       fixture.detectChanges();
       tick();
 
-      expect(component.amountOfPersons).toBe(expectations[i]);
+      expect(component.amountOfPersons).toBe(testExpectations[i]);
     }
   }));
 
   it('Test Person Service', fakeAsync(inject([PersonsService], (personsService: PersonsService) => {
-    for(let i = 0; i < inputs.length; i++) {
+    let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let accumulative: number[] = [1, 2, 3, 13, 24, 36, 49, 63, 78, 94, 111, 129, 148];
+
+    for(let i = 0; i < keypresses.length; i++) {
       const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
-      inputField.nativeElement.value = inputs[i];
-      inputField.nativeElement.dispatchEvent(new Event('keyup'));
+      const event = new KeyboardEvent('keypress', {
+        key: keypresses[i],
+        cancelable: true
+      });
 
-      fixture.detectChanges();
-      tick();
+      let val: string = "1";
 
+      if (component.numbersOnly(event)) {
+        val += keypresses[i];
+      }
+
+      inputField.nativeElement.value = val;
       inputField.nativeElement.dispatchEvent(new Event('input'));
-      
+
       fixture.detectChanges();
       tick();
 
