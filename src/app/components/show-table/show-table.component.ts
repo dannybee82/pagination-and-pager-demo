@@ -21,7 +21,10 @@ export class ShowTableComponent extends Pagination {
 
   public generatePersons: number = 25;
 
-  constructor(private personsService: PersonsService, pageService: PageService) {
+  constructor(
+    private personsService: PersonsService, 
+    pageService: PageService
+  ) {
     super(pageService);
     
     //Listen for changes.

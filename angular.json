@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pagination-and-pager-demo:build:production"
+              "buildTarget": "pagination-and-pager-demo:build:production"
             },
             "development": {
-              "browserTarget": "pagination-and-pager-demo:build:development"
+              "buildTarget": "pagination-and-pager-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pagination-and-pager-demo:build"
+            "buildTarget": "pagination-and-pager-demo:build"
           }
         },
         "test": {

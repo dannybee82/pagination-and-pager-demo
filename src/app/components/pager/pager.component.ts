@@ -11,6 +11,8 @@ export class PagerComponent {
 
   public productsPerPage?: number;
 
+  public options: number[] = [5, 10, 25, 50, 100];
+
   constructor(private pageService: PageService) {
     this.productsPerPage = this.pageService.getDefaultRecordsPerPage();
     this.pageService.setRecordsPerPage(this.productsPerPage);

@@ -11,7 +11,6 @@ export class PaginationComponent {
   public amountOfPages: number = 0;
 
   private _currentPageindex: number = 0;
-
   private _paginationAmount = 3;
 
   constructor(private pageService: PageService) {

@@ -13,7 +13,9 @@ export class AddPersonsFormComponent {
 
   public amountOfPersons: number = 1;
 
-  constructor(private personsService: PersonsService) {}
+  constructor(
+    private personsService: PersonsService
+  ) {}
 
   submit(form: NgForm) : void {
     if(form.valid) {
