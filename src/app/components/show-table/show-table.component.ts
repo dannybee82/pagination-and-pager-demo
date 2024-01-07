@@ -9,6 +9,7 @@ import { Person } from 'src/app/models/Person';
 
 //Shared functions.
 import { Pagination } from 'src/app/shared_functions/Pagination';
+import { FilterFunctions } from 'src/app/shared_functions/FilterFunctions';
 
 @Component({
   selector: 'app-show-table',
@@ -17,19 +18,29 @@ import { Pagination } from 'src/app/shared_functions/Pagination';
 })
 export class ShowTableComponent extends Pagination {
 
+  private _originalPersons?: Person[];
   public allPersons?: Person[];
 
   public generatePersons: number = 25;
+
+  private _filter: FilterFunctions = new FilterFunctions();
 
   constructor(
     private personsService: PersonsService, 
     pageService: PageService
   ) {
     super(pageService);
-    
-    //Listen for changes.
-    this.getCurrentData().subscribe({
+  }
+
+  ngOnInit() {
+    if(this.generatePersons < 0) {
+      this.generatePersons = 0;
+    }
+
+     //Listen for changes.
+     this.getCurrentData().subscribe({
       next: (result) => {
+        this._originalPersons = result;
         this.allPersons = result;
       }
     });
@@ -44,12 +55,6 @@ export class ShowTableComponent extends Pagination {
         }
       }
     });
-  }
-
-  ngOnInit() {
-    if(this.generatePersons < 0) {
-      this.generatePersons = 0;
-    }
 
     this.personsService.generateRandomPersons(this.generatePersons);    
     this.allPersons = this.personsService.getAllPersons();
@@ -57,6 +62,14 @@ export class ShowTableComponent extends Pagination {
     //Set data for pagination.
     this.setData(this.allPersons);    
     this.updatePagination();     
+  }
+
+  filterPersons(value: string) : void {
+    if(value !== '') {
+      this.allPersons = this._filter.filterObject(this.allPersons, value);
+    } else {
+      this.allPersons = this._originalPersons;
+    }
   }
 
 }

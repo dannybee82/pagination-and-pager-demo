@@ -1,0 +1,15 @@
+@media (max-width: 576px) {      
+    .xs-hide {
+        display: none;
+    }
+
+    .xs-width-input {
+        width: 50%;
+    }
+
+    .xs-width-div {
+        width: 45%;
+        position: relative;
+        float: right;
+    }
+}

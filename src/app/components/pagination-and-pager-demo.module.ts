@@ -12,6 +12,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { PagerComponent } from './pager/pager.component';
 import { AddPersonsFormComponent } from './add-persons-form/add-persons-form.component';
 import { ScrollToTopAdminComponent } from './scroll-to-top/scroll-to-top.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ScrollToTopAdminComponent } from './scroll-to-top/scroll-to-top.compone
     PaginationComponent,
     PagerComponent,
     AddPersonsFormComponent,
-    ScrollToTopAdminComponent
+    ScrollToTopAdminComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { ScrollToTopAdminComponent } from './scroll-to-top/scroll-to-top.compone
   exports: [
     ShowTableComponent,
     AddPersonsFormComponent,
-    ScrollToTopAdminComponent
+    ScrollToTopAdminComponent,
+    FilterComponent
   ]
 })
 export class PaginationAndPagerDemoModule { }

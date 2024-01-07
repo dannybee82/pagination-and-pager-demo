@@ -1,0 +1,23 @@
+import { Component, EventEmitter, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrl: './filter.component.css'
+})
+export class FilterComponent {
+  @Output() filterValue: EventEmitter<string> = new EventEmitter<string>();
+
+  public isFiltered: boolean = false;
+
+  filter(value: string): void {
+    this.isFiltered = true;
+    this.filterValue.emit(value);
+  }
+
+  reset() : void {
+    this.isFiltered = false;
+    this.filterValue.emit('');
+  }
+
+}

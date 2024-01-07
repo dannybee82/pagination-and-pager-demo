@@ -1,17 +1,20 @@
 <div class="container-fluid">
   @if (this.allPersons?.length ?? 0 > 0) {
-    <div class="row mt-2 mb-2">
+    <div class="row mt-2 mb-1">
       <div class="col-5">
         <div class="col-auto mt-1">
           Total Persons: <span class="fw-bold">{{ this.getTotalRecords() }}</span> Showing: <span class="fw-bold">#{{ this.getCurrentShowing() }}</span>
         </div>
-      </div>
+      </div>     
       <div class="col-3">
         <app-pager></app-pager>
       </div>
       <div class="col-4">
         <app-pagination></app-pagination>
-      </div>
+      </div>      
+    </div>
+    <div class="row mt-1 mb-2">
+      <app-filter (filterValue)="this.filterPersons($event)"></app-filter>
     </div>
   }
   @if (this.allPersons?.length ?? 0 > 0) {
