@@ -3,7 +3,7 @@ export class FilterFunctions {
     filterObject(object: any, filterAt: string) : any | undefined {        
         if(object != undefined) {   
             let filtered: any[] = [];
-            
+          
             for(let i = 0; i < object.length; i++) {                
                 let values: string[] | null = this.getValues(object[i]); 
 
@@ -65,7 +65,7 @@ export class FilterFunctions {
     private searchInArray(searchFor: string, arr: string[] | null) : number {
         if(arr != null) {
             for(let i = 0; i < arr.length; i++) {
-                if(arr[i].indexOf(searchFor) > -1) {
+                if(arr[i].indexOf(searchFor) > -1 && searchFor !== '') {
                     return i;
                 }
             }

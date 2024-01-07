@@ -12,42 +12,6 @@ describe('AddPersonsFormComponent', () => {
   let component: AddPersonsFormComponent;
   let fixture: ComponentFixture<AddPersonsFormComponent>;
 
-  // let inputs: any[] = [
-  //   '',
-  //   '0',
-  //   'a',
-  //   '!',
-  //   '-1',
-  //   '5',
-  //   '10',
-  //   '15',
-  //   '25'
-  // ];
-
-  // let expectations: number[] = [
-  //   1,
-  //   1,
-  //   1,
-  //   1,
-  //   1,
-  //   5,
-  //   10,
-  //   15,
-  //   25
-  // ];
-
-  // let accumulative: number[] = [
-  //   1,
-  //   2,
-  //   3,
-  //   4,
-  //   5,
-  //   10,
-  //   20,
-  //   35,
-  //   60
-  // ];
-
   beforeEach(async() => {
     TestBed.configureTestingModule({
       declarations: [AddPersonsFormComponent],

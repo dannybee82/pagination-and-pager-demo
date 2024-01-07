@@ -1,11 +1,7 @@
 import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
-import { ReplaySubject } from 'rxjs';
-
 import { PagerComponent } from './pager.component';
-
 import { PageService } from 'src/app/services/page.service';
 
 describe('PagerComponent', () => {

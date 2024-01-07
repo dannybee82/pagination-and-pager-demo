@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { PageService } from '../services/page.service';
 import { Pagination } from './Pagination';
