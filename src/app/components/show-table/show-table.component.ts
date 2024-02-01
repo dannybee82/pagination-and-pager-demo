@@ -10,8 +10,17 @@ import { Person } from 'src/app/models/Person';
 //Shared functions.
 import { Pagination } from 'src/app/shared_functions/Pagination';
 import { FilterFunctions } from 'src/app/shared_functions/FilterFunctions';
+import { PagerComponent } from 'src/app/components/pager/pager.component';
+import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
+import { FilterComponent } from 'src/app/components/filter/filter.component';
 
 @Component({
+	standalone: true,
+	imports: [
+		PagerComponent,
+		PaginationComponent,
+		FilterComponent,
+	],
   selector: 'app-show-table',
   templateUrl: './show-table.component.html',
   styleUrls: ['./show-table.component.css']
