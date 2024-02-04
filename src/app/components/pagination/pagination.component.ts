@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
@@ -7,14 +7,16 @@ import { PageService } from 'src/app/services/page.service';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
 
   public amountOfPages: number = 0;
 
   private _currentPageindex: number = 0;
   private _paginationAmount = 3;
 
-  constructor(private pageService: PageService) {
+	private pageService = inject(PageService);
+
+  ngOnInit(): void {
     this.pageService.getPagesAmount().subscribe(result => {
       this.amountOfPages = result;      
     });

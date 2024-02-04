@@ -1,3 +1,4 @@
+import { WritableSignal, signal } from '@angular/core';
 import { PageService } from '../services/page.service';
 import { ReplaySubject } from 'rxjs';
 
@@ -12,6 +13,8 @@ export class Pagination {
   private _data: ReplaySubject<any>;
 
   private pageService: PageService;
+
+  public totalRecords: WritableSignal<number> = signal(0);
 
   constructor(pageService: PageService) {
     this.pageService = pageService;
@@ -97,6 +100,8 @@ export class Pagination {
       this._workData = this._originalData;
       let pages = this.calculatePages(this._originalData, this._recordsPerPage);
       this.pageService.setPagesAmount(pages);
+
+      this.totalRecords.set(this._workData.length);
     }
   }
 
@@ -112,12 +117,12 @@ export class Pagination {
     return this._data;
   }
 
-  getTotalRecords() : number {
+  getTotalRecords() : void {
     if(this._originalData != undefined) {
-      return this._originalData.length;
+      this.totalRecords.set(this._originalData.length);
     }
 
-    return 0;
+    this.totalRecords.set(0);
   }
 
   getCurrentShowing() : string {

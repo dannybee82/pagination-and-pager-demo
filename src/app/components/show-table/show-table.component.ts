@@ -27,7 +27,6 @@ import { FilterComponent } from 'src/app/components/filter/filter.component';
 })
 export class ShowTableComponent extends Pagination {
 
-  private _originalPersons?: Person[];
   public allPersons?: Person[];
 
   public generatePersons: number = 25;
@@ -49,7 +48,6 @@ export class ShowTableComponent extends Pagination {
      //Listen for changes.
      this.getCurrentData().subscribe({
       next: (result) => {
-        this._originalPersons = result;
         this.allPersons = result;
       }
     });
@@ -75,10 +73,12 @@ export class ShowTableComponent extends Pagination {
 
   filterPersons(value: string) : void {
     if(value !== '') {
-      this.allPersons = this._filter.filterObject(this.allPersons, value);
+      this.allPersons = this._filter.filterObject(this.personsService.getAllPersons(), value);
     } else {
-      this.allPersons = this._originalPersons;
+      this.allPersons = this.personsService.getAllPersons();
     }
+
+    this.setData(this.allPersons);  
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgForm } from '@angular/forms'
 
 //Services
@@ -20,9 +20,7 @@ export class AddPersonsFormComponent {
 
   public amountOfPersons: number = 1;
 
-  constructor(
-    private personsService: PersonsService
-  ) {}
+	private personsService = inject(PersonsService);
 
   submit(form: NgForm) : void {
     if(form.valid) {

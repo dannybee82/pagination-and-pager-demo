@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
@@ -8,13 +8,15 @@ import { PageService } from 'src/app/services/page.service';
   styleUrls: ['./pager.component.scss']
 })
 
-export class PagerComponent {
+export class PagerComponent implements OnInit {
 
   public productsPerPage?: number;
 
   public options: number[] = [5, 10, 25, 50, 100];
 
-  constructor(private pageService: PageService) {
+	private pageService = inject(PageService);
+
+  ngOnInit() : void {
     this.productsPerPage = this.pageService.getDefaultRecordsPerPage();
     this.pageService.setRecordsPerPage(this.productsPerPage);
   }
