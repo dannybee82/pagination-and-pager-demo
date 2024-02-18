@@ -1,16 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-
-import { PaginationAndPagerDemoModule } from './components/pagination-and-pager-demo.module';
-
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [],
       imports: [
-        PaginationAndPagerDemoModule
+        AppComponent
       ]
     }).compileComponents();
   });

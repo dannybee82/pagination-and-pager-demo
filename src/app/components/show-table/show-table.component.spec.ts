@@ -4,7 +4,6 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ShowTableComponent } from './show-table.component';
-import { PaginationAndPagerDemoModule } from '../pagination-and-pager-demo.module';
 
 import { PersonsService } from 'src/app/services/persons.service';
 import { PageService } from 'src/app/services/page.service';
@@ -37,8 +36,10 @@ describe('ShowTableComponent', () => {
 
   beforeEach(async() => {
     TestBed.configureTestingModule({
-      declarations: [ShowTableComponent],
-      imports: [PaginationAndPagerDemoModule],
+      declarations: [],
+      imports: [
+        ShowTableComponent
+      ],
       providers: [PersonsService, PageService]
     })
     .compileComponents();
@@ -64,7 +65,7 @@ describe('ShowTableComponent', () => {
       component.generatePersons = generatePersons[i];
       component.ngOnInit();
  
-      let currentLength: number = component.getTotalRecords();
+      let currentLength: number = component.totalRecords();
   
       expect(component.generatePersons).toBe(currentLength);
 

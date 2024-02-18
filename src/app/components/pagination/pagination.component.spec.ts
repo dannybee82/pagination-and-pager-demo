@@ -14,8 +14,11 @@ describe('PaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ],
-      providers: [ PageService ]
+      declarations: [],
+      providers: [ PageService ],
+      imports: [
+        PaginationComponent
+      ]
     })
     .compileComponents();
 

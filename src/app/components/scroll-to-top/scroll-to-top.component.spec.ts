@@ -8,7 +8,10 @@ describe('ScrollToTopAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScrollToTopAdminComponent ]
+      declarations: [],
+      imports: [
+        ScrollToTopAdminComponent
+      ]
     })
     .compileComponents();
 

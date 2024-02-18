@@ -1,6 +1,5 @@
 import { TestBed, fakeAsync } from '@angular/core/testing';
 import { FilterFunctions } from './FilterFunctions';
-import { filter } from 'rxjs';
 
 describe('FilterFunctions Class', () => {
 

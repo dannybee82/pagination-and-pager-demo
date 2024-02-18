@@ -3,7 +3,6 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AddPersonsFormComponent } from './add-persons-form.component';
-import { PaginationAndPagerDemoModule } from '../pagination-and-pager-demo.module';
 import { FormsModule } from '@angular/forms'
 
 import { PersonsService } from 'src/app/services/persons.service';
@@ -14,8 +13,8 @@ describe('AddPersonsFormComponent', () => {
 
   beforeEach(async() => {
     TestBed.configureTestingModule({
-      declarations: [AddPersonsFormComponent],
-      imports: [PaginationAndPagerDemoModule, FormsModule]
+      declarations: [],
+      imports: [AddPersonsFormComponent, FormsModule]
     })
     .compileComponents(); 
     

@@ -12,8 +12,11 @@ describe('PagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PagerComponent ],
-      providers: [ PageService ]
+      declarations: [],
+      providers: [ PageService ],
+      imports: [
+        PagerComponent
+      ]
     })
     .compileComponents();
 
