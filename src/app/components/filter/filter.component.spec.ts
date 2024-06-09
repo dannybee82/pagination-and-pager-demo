@@ -73,7 +73,7 @@ describe('FilterComponent', () => {
     const component = fixture.componentInstance;
     spyOn(component.filterValue, 'emit');
     //Make reset button visible
-    component.isFiltered = true;
+    component.isFiltered.set(true);
 
     let value: string = 'foobar';
     const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
@@ -110,7 +110,7 @@ describe('FilterComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(component.isFiltered).toBe(true);
+    expect(component.isFiltered()).toBe(true);
 
     const buttonReset: DebugElement = fixture.debugElement.query(By.css('button.btn-danger'));
     (buttonReset.nativeElement as HTMLButtonElement).click();
@@ -118,7 +118,7 @@ describe('FilterComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(component.isFiltered).toBe(false);
+    expect(component.isFiltered()).toBe(false);
   }));
 
 

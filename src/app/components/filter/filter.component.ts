@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OutputEmitterRef, WritableSignal, output, signal } from '@angular/core';
 
 @Component({
 	standalone: true,
@@ -7,17 +7,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
-  @Output() filterValue: EventEmitter<string> = new EventEmitter<string>();
+  filterValue: OutputEmitterRef<string> = output<string>();
 
-  public isFiltered: boolean = false;
+  public isFiltered: WritableSignal<boolean> = signal(false);
 
   filter(value: string): void {
-    this.isFiltered = true;
+    this.isFiltered.set(true);
     this.filterValue.emit(value);
   }
 
   reset() : void {
-    this.isFiltered = false;
+    this.isFiltered.set(false);
     this.filterValue.emit('');
   }
 

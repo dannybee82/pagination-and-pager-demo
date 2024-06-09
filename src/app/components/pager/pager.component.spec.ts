@@ -66,7 +66,10 @@ describe('PagerComponent', () => {
     });
 
     for(let i = 0; i < shouldHaveValues.length; i++) {
-      component.changePageSize(shouldHaveValues[i] + "");
+      let select: DebugElement = fixture.debugElement.query(By.css('select'));
+      select.nativeElement.value = shouldHaveValues[i];
+      select.nativeElement.dispatchEvent(new Event('change'));
+      fixture.detectChanges();
     }
   })));
 

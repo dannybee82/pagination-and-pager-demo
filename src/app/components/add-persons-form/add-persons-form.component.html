@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row">
-        <form #form="ngForm" (ngSubmit)="this.submit(form)" >
+        <form [formGroup]="this.form" (ngSubmit)="this.submit()">
             <div class="col-auto float-start mt-1 p-2">
                 <label for="amount" class="form-label fw-bold">Add number of Persons:</label>
             </div>
             <div class="col-2 float-start p-2">
-                <input type="number" name="amount" [(ngModel)]="this.amountOfPersons" class="form-control" min="1" (keypress)="this.numbersOnly($event)" required #inputValue>
+                <input type="number" id="amount" formControlName="amount" class="form-control" min="1" (keypress)="this.numbersOnly($event)">
             </div>
             <div class="col-auto float-start p-2">
                 <button type="submit" class="btn bg-success text-light" title="Add Persons">

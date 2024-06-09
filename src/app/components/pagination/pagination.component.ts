@@ -9,7 +9,7 @@ import { PageService } from 'src/app/services/page.service';
 })
 export class PaginationComponent implements OnInit {
 
-  public amountOfPages: number = 0;
+  public amountOfPages: WritableSignal<number> = signal(0);
 
   private _currentPageindex: number = 0;
   private _paginationAmount = 3;
@@ -18,7 +18,7 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageService.getPagesAmount().subscribe(result => {
-      this.amountOfPages = result;
+      this.amountOfPages.set(result);
     });
 
     this.pageService.getCurrentPageIndex().subscribe(result => {
@@ -28,9 +28,9 @@ export class PaginationComponent implements OnInit {
 
   getPagination() : string[] {
     let start: number = (this._currentPageindex - 1 <= 0) ? 0 : this._currentPageindex - 1;
-    let end: number = (start + this._paginationAmount < this.amountOfPages) ? start + this._paginationAmount : this.amountOfPages;
+    let end: number = (start + this._paginationAmount < this.amountOfPages()) ? start + this._paginationAmount : this.amountOfPages();
 
-    if(start + this._paginationAmount > this.amountOfPages && start - 1 >= 0) {
+    if(start + this._paginationAmount > this.amountOfPages() && start - 1 >= 0) {
       start -= 1;
     }    
 
@@ -62,7 +62,7 @@ export class PaginationComponent implements OnInit {
   }
 
   nextPage() : void {
-    if(this._currentPageindex + 1 < this.amountOfPages) {
+    if(this._currentPageindex + 1 < this.amountOfPages()) {
       this._currentPageindex += 1;
       this.pageService.setCurrentPageIndex(this._currentPageindex);
     }

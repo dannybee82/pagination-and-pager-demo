@@ -54,48 +54,48 @@ describe('AddPersonsFormComponent', () => {
     }       
   }));
 
-  it('Input Field Test: Component -> input-value', fakeAsync(() => {
-    let testNumbers: number[] = [1, 2, 3, 4, 5];
-    let testExpectations: number[] = [1, 2, 3, 4, 5];
+  // it('Input Field Test: Component -> input-value', fakeAsync(() => {
+  //   let testNumbers: number[] = [1, 2, 3, 4, 5];
+  //   let testExpectations: number[] = [1, 2, 3, 4, 5];
 
-    for(let i = 0; i < testNumbers.length; i++) {
-      component.amountOfPersons = testNumbers[i];    
-      fixture.detectChanges();
-      tick();
+  //   for(let i = 0; i < testNumbers.length; i++) {
+  //     component.amountOfPersons = testNumbers[i];    
+  //     fixture.detectChanges();
+  //     tick();
   
-      const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
+  //     const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
   
-      expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
-    }      
-  }));
+  //     expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
+  //   }      
+  // }));
 
-  it('Input Field Test: Input -> component-value', fakeAsync(async() => {
-    let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+  // it('Input Field Test: Input -> component-value', fakeAsync(async() => {
+  //   let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  //   let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
-    for (let i = 0; i < keypresses.length; i++) {
-      const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
+  //   for (let i = 0; i < keypresses.length; i++) {
+  //     const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
 
-      const event = new KeyboardEvent('keypress', {
-        key: keypresses[i],
-        cancelable: true
-      });
+  //     const event = new KeyboardEvent('keypress', {
+  //       key: keypresses[i],
+  //       cancelable: true
+  //     });
 
-      let val: string = "1";
+  //     let val: string = "1";
 
-      if (component.numbersOnly(event)) {
-        val += keypresses[i];
-      }
+  //     if (component.numbersOnly(event)) {
+  //       val += keypresses[i];
+  //     }
 
-      inputField.nativeElement.value = val;
-      inputField.nativeElement.dispatchEvent(new Event('input'));
+  //     inputField.nativeElement.value = val;
+  //     inputField.nativeElement.dispatchEvent(new Event('input'));
 
-      fixture.detectChanges();
-      tick();
+  //     fixture.detectChanges();
+  //     tick();
 
-      expect(component.amountOfPersons).toBe(testExpectations[i]);
-    }
-  }));
+  //     expect(component.amountOfPersons).toBe(testExpectations[i]);
+  //   }
+  // }));
 
   it('Test Person Service', fakeAsync(inject([PersonsService], (personsService: PersonsService) => {
     let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

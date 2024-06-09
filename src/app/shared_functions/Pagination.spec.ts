@@ -10,39 +10,39 @@ describe('Pagination Class', () => {
     let pagination: Pagination;
 
     let testObject001: Person[] = [
-        new Person(1, 'firstname 1', 'lastname 1', 18),
-        new Person(2, 'firstname 2', 'lastname 1', 19),
-        new Person(3, 'firstname 3', 'lastname 1', 20),
-        new Person(4, 'firstname 4', 'lastname 1', 21),
-        new Person(5, 'firstname 5', 'lastname 1', 22)
+        {personNumber: 1,firstName:  'firstname 1',lastName:  'lastname 1',age:18},
+        {personNumber: 2,firstName:  'firstname 2',lastName:  'lastname 1',age:19},
+        {personNumber: 3,firstName:  'firstname 3',lastName:  'lastname 1',age:20},
+        {personNumber: 4,firstName:  'firstname 4',lastName:  'lastname 1',age:21},
+        {personNumber: 5,firstName:  'firstname 5',lastName:  'lastname 1',age:22}
     ];
 
     let testObject002: Person[] = [
-        new Person(1, 'firstname', 'lastname', 18),
-        new Person(2, 'firstname', 'lastname', 18),
-        new Person(3, 'firstname', 'lastname', 18),
-        new Person(4, 'firstname', 'lastname', 18),
-        new Person(5, 'firstname', 'lastname', 18),
-        new Person(6, 'firstname', 'lastname', 18),
-        new Person(7, 'firstname', 'lastname', 18),
-        new Person(8, 'firstname', 'lastname', 18),
-        new Person(9, 'firstname', 'lastname', 18),
-        new Person(10, 'firstname', 'lastname', 18),
-        new Person(11, 'firstname', 'lastname', 18),
-        new Person(12, 'firstname', 'lastname', 18),
-        new Person(13, 'firstname', 'lastname', 18),
-        new Person(14, 'firstname', 'lastname', 18),
-        new Person(15, 'firstname', 'lastname', 18),
-        new Person(16, 'firstname', 'lastname', 18),
-        new Person(17, 'firstname', 'lastname', 18),
-        new Person(18, 'firstname', 'lastname', 18),
-        new Person(19, 'firstname', 'lastname', 18),
-        new Person(20, 'firstname', 'lastname', 18),
-        new Person(21, 'firstname', 'lastname', 18),
-        new Person(22, 'firstname', 'lastname', 18),
-        new Person(23, 'firstname', 'lastname', 18),
-        new Person(24, 'firstname', 'lastname', 18),
-        new Person(25, 'firstname', 'lastname', 18)
+        {personNumber: 1,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 2,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 3,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 4,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 5,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 6,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 7,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 8,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 9,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 10,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 11,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 12,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 13,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 14,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 15,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 16,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 17,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 18,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 19,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 20,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 21,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 22,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 23,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 24,firstName:  'firstname',lastName:  'lastname',age:18},
+        {personNumber: 25,firstName:  'firstname',lastName:  'lastname',age:18}        
     ];
 
     beforeEach(() => {
