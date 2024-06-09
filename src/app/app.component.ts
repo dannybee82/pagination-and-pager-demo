@@ -12,7 +12,7 @@ import { ScrollToTopAdminComponent } from 'src/app/components/scroll-to-top/scro
 	],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'pagination-and-pager-demo';

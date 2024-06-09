@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Signal, inject, viewChild } from '@angular/core';
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
@@ -8,9 +8,10 @@ import { PageService } from 'src/app/services/page.service';
   styleUrls: ['./pager.component.scss']
 })
 
-export class PagerComponent implements OnInit {
+export class PagerComponent implements OnInit, AfterViewInit {
 
   public productsPerPage?: number;
+  public selectElement: Signal<ElementRef | undefined> = viewChild('selectEl');
 
   public options: number[] = [5, 10, 25, 50, 100];
 
@@ -21,13 +22,27 @@ export class PagerComponent implements OnInit {
     this.pageService.setRecordsPerPage(this.productsPerPage);
   }
 
-  changePageSize(size: string) {    
-    let parsed = parseInt(size);
+  ngAfterViewInit(): void {
+    if(this.selectElement()) {
+      let selectEl: HTMLSelectElement | undefined = this.selectElement()?.nativeElement;
 
-    if(this.productsPerPage != parsed) {
-      this.productsPerPage = parsed;
-      this.pageService.setRecordsPerPage(parsed);
-    }    
+      if(selectEl) {
+        selectEl.value = this.productsPerPage + "" ?? "10";
+      }
+    }
+  }
+
+  changePageSize($event: Event) {
+    if($event.target instanceof HTMLSelectElement) {
+      const el: HTMLSelectElement = $event.target as HTMLSelectElement;
+
+      let parsed = parseInt(el.value);
+
+      if(this.productsPerPage != parsed) {
+        this.productsPerPage = parsed;
+        this.pageService.setRecordsPerPage(parsed);
+      }  
+    }  
   }
 
 }

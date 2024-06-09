@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 	],
   selector: 'app-add-persons-form',
   templateUrl: './add-persons-form.component.html',
-  styleUrls: ['./add-persons-form.component.css']
+  styleUrls: ['./add-persons-form.component.scss']
 })
 export class AddPersonsFormComponent {
 

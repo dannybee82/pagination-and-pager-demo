@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
 //Models.
-import { Person } from '../models/Person'; 
+import { Person } from '../models/person.interface'; 
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,14 @@ export class PersonsService {
         let randomIndex02: number = Math.floor(Math.random() * this._maxRandomNumber);     
         let randomAge: number = Math.floor(Math.random() * (65 - 18) + 18) ;
 
-        this._allPersons.push(new Person(this._personNumber, this._firstNames[randomIndex01], this._lastNames[randomIndex02], randomAge));
+        const person: Person = {
+          personNumber: this._personNumber,
+          firstName: this._firstNames[randomIndex01],
+          lastName: this._lastNames[randomIndex02],
+          age: randomAge
+        };
+
+        this._allPersons.push(person);
         this._personNumber++;;
       }
     }

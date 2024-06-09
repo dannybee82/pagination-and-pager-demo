@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageService.getPagesAmount().subscribe(result => {
-      this.amountOfPages = result;      
+      this.amountOfPages = result;
     });
 
     this.pageService.getCurrentPageIndex().subscribe(result => {

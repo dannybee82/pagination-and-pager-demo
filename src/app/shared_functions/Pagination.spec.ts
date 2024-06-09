@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PageService } from '../services/page.service';
 import { Pagination } from './Pagination';
 
-import { Person } from '../models/Person';
+import { Person } from '../models/person.interface';
 
 describe('Pagination Class', () => {
     let service: PageService;

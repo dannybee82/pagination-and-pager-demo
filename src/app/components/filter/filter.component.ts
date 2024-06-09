@@ -4,7 +4,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 	standalone: true,
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
   @Output() filterValue: EventEmitter<string> = new EventEmitter<string>();
