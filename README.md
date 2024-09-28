@@ -1,27 +1,37 @@
 # PaginationAndPagerDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+\- Angular 18 application + Bootstrap 5.
 
-## Development server
+\- Pagination and Pager.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+\- With tests.
 
-## Code scaffolding
+## Installation + run app
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Command to install**
 
-## Build
+_npm install_
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+or shorter:
 
-## Running unit tests
+_npm i_
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Command to run the application:**
 
-## Running end-to-end tests
+_ng serve --open_
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+or shorter:
 
-## Further help
+_ng s --o_
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Application
+
+A demo application to show pagination and pager components.
+
+Add random persons to see the pagination and pager in action.
+
+The application has a filter field to filter persons by name.
+
+Sort by: firstname, lastname and age.
+
+See the root folder for example images.

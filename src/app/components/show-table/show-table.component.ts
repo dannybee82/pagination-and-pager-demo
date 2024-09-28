@@ -4,8 +4,9 @@ import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { PersonsService } from 'src/app/services/persons.service';
 import { PageService } from 'src/app/services/page.service';
 
-//Models.
+//Interfaces / models.
 import { Person } from 'src/app/models/person.interface';
+import { SortState } from 'src/app/models/sort-state.interface';
 
 //Shared functions.
 import { Pagination } from 'src/app/shared_functions/Pagination';
@@ -13,6 +14,7 @@ import { FilterFunctions } from 'src/app/shared_functions/FilterFunctions';
 import { PagerComponent } from 'src/app/components/pager/pager.component';
 import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 import { FilterComponent } from 'src/app/components/filter/filter.component';
+import { SortFunctions } from 'src/app/shared_functions/SortFunctions';
 
 @Component({
 	standalone: true,
@@ -28,10 +30,19 @@ import { FilterComponent } from 'src/app/components/filter/filter.component';
 export class ShowTableComponent extends Pagination implements OnInit {
 
   public allPersons: WritableSignal<Person[]> = signal([]);
+  public sortState: WritableSignal<SortState> = signal({
+    sortField: '',
+    isAscending: false
+  });
 
   public generatePersons: number = 25;
 
   private _filter: FilterFunctions = new FilterFunctions();
+  private _sort: SortFunctions = new SortFunctions();
+  private _defaultSortState: SortState = {
+    sortField: '',
+    isAscending: false
+  };
 
   constructor(
     private personsService: PersonsService, 
@@ -79,6 +90,18 @@ export class ShowTableComponent extends Pagination implements OnInit {
     }
 
     this.setData(this.allPersons());  
+  }
+
+  sortTable(sortField: string, isAscending: boolean): void {
+    if(this.sortState().sortField === sortField && this.sortState().isAscending === isAscending) {
+      //Restore default state.
+      this.sortState.set(this._defaultSortState);
+      this.personsService.setUpdatePersons(true);     
+    } else {
+      //Change state.
+      this.sortState.set({ sortField: sortField, isAscending: isAscending});
+      this._sort.sort(this.allPersons(), sortField, isAscending);
+    }
   }
 
 }

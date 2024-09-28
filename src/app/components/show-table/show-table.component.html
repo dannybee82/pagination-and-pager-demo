@@ -22,9 +22,48 @@
       <thead class="table-dark">
         <tr>
           <th>#</th>
-          <th>Firstname:</th>
-          <th>Lastname:</th>
-          <th>Age:</th>
+          <th>Firstname:
+            <i 
+              class="bi bi-arrow-up me-1" 
+              [class.text-light]="this.sortState().sortField !== 'firstName' && this.sortState().isAscending !== true"
+              [class.text-primary]="this.sortState().sortField === 'firstName' && this.sortState().isAscending === true"
+              (click)="sortTable('firstName', true)">
+            </i>
+            <i 
+              class="bi bi-arrow-down text-light" 
+              [class.text-light]="this.sortState().sortField !== 'firstName' && this.sortState().isAscending !== false"
+              [class.text-primary]="this.sortState().sortField === 'firstName' && this.sortState().isAscending === false"
+              (click)="sortTable('firstName', false)">
+            </i>
+          </th>
+          <th>Lastname:
+            <i 
+              class="bi bi-arrow-up me-1" 
+              [class.text-light]="this.sortState().sortField !== 'lastName' && this.sortState().isAscending !== true"
+              [class.text-primary]="this.sortState().sortField === 'lastName' && this.sortState().isAscending === true"
+              (click)="sortTable('lastName', true)">
+            </i>
+            <i 
+              class="bi bi-arrow-down text-light" 
+              [class.text-light]="this.sortState().sortField !== 'lastName' && this.sortState().isAscending !== false"
+              [class.text-primary]="this.sortState().sortField === 'lastName' && this.sortState().isAscending === false"
+              (click)="sortTable('lastName', false)">
+            </i>
+          </th>
+          <th>Age:
+            <i 
+              class="bi bi-arrow-up me-1" 
+              [class.text-light]="this.sortState().sortField !== 'age' && this.sortState().isAscending !== true"
+              [class.text-primary]="this.sortState().sortField === 'age' && this.sortState().isAscending === true"
+              (click)="sortTable('age', true)">
+            </i>
+            <i 
+              class="bi bi-arrow-down text-light" 
+              [class.text-light]="this.sortState().sortField !== 'age' && this.sortState().isAscending !== false"
+              [class.text-primary]="this.sortState().sortField === 'age' && this.sortState().isAscending === false"
+              (click)="sortTable('age', false)">
+            </i>
+          </th>
         </tr>
       </thead>
       <tbody class="table-group-divider">

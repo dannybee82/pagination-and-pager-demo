@@ -32,7 +32,7 @@ describe('PaginationComponent', () => {
   });
 
   it('test pagination - page numbers', () => {
-    component.amountOfPages = 3;
+    component.amountOfPages.set(3);
     fixture.detectChanges();
 
     let expected: string[] = [];
@@ -54,7 +54,7 @@ describe('PaginationComponent', () => {
   });
 
   it('test pagination - previous and next button', () => {
-    component.amountOfPages = 3;
+    component.amountOfPages.set(3);
     fixture.detectChanges();
 
     let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
@@ -87,7 +87,7 @@ describe('PaginationComponent', () => {
       }
     });
 
-    component.amountOfPages = 3;
+    component.amountOfPages.set(3);
     fixture.detectChanges();
 
     let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
@@ -127,7 +127,7 @@ describe('PaginationComponent', () => {
       }
     });
 
-    component.amountOfPages = 3;
+    component.amountOfPages.set(3);
     fixture.detectChanges();
 
     let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
