@@ -27,7 +27,7 @@ export class PagerComponent implements OnInit, AfterViewInit {
       let selectEl: HTMLSelectElement | undefined = this.selectElement()?.nativeElement;
 
       if(selectEl) {
-        selectEl.value = this.productsPerPage + "" ?? "10";
+        selectEl.value = this.productsPerPage != undefined ? this.productsPerPage.toString() !== '' ? this.productsPerPage?.toString()  : "10" : '10';
       }
     }
   }
