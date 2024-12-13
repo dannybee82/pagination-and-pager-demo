@@ -2,7 +2,6 @@ import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
-	standalone: true,
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']

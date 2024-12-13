@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, Signal, inject, viewChild
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
-	standalone: true,
   selector: 'app-pager',
   templateUrl: './pager.component.html',
   styleUrls: ['./pager.component.scss']

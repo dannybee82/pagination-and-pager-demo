@@ -1,4 +1,4 @@
-import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, signal, inject } from '@angular/core';
 
 //Services.
 import { PersonsService } from 'src/app/services/persons.service';
@@ -17,7 +17,6 @@ import { FilterComponent } from 'src/app/components/filter/filter.component';
 import { SortFunctions } from 'src/app/shared_functions/SortFunctions';
 
 @Component({
-	standalone: true,
 	imports: [
 		PagerComponent,
 		PaginationComponent,
@@ -44,7 +43,7 @@ export class ShowTableComponent extends Pagination implements OnInit {
     isAscending: false
   };
 
-  constructor(
+	constructor(
     private personsService: PersonsService, 
     pageService: PageService
   ) {

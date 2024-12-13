@@ -4,7 +4,6 @@ import { ShowTableComponent } from 'src/app/components/show-table/show-table.com
 import { ScrollToTopAdminComponent } from 'src/app/components/scroll-to-top/scroll-to-top.component';
 
 @Component({
-	standalone: true,
 	imports: [
 		AddPersonsFormComponent,
 		ShowTableComponent,

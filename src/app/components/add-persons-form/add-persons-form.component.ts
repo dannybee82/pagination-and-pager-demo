@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, UntypedFormGroup, Validators, FormsModule, Reac
 import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({
-	standalone: true,
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
