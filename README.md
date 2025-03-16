@@ -16,6 +16,8 @@ The application has a filter field to filter persons by name.
 
 Sort by: firstname, lastname and age.
 
+Show or hide the table columns.
+
 See the root folder for example images.
 
 ## Installation + run app

@@ -1,0 +1,13 @@
+    {{this.sortField() | titlecase }}:
+    <i 
+      class="bi bi-arrow-up me-1" 
+      [class.text-light]="this.sortState()?.sortField !== this.sortField() && this.sortState()?.isAscending !== true"
+      [class.text-primary]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === true"
+      (click)="callback(this.sortField(), true)">
+    </i>
+    <i 
+      class="bi bi-arrow-down text-light" 
+      [class.text-light]="this.sortState()?.sortField !== this.sortField() && this.sortState()?.isAscending !== false"
+      [class.text-primary]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === false"
+      (click)="callback(this.sortField(), false)">
+    </i>

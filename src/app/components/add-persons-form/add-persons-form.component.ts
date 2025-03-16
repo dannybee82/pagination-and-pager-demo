@@ -1,8 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms'
-
-//Services
-import { PersonsService } from 'src/app/services/persons.service';
+import { PersonsService } from '../../services/persons.service';
 
 @Component({
 	imports: [

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Signal, inject, viewChild } from '@angular/core';
-import { PageService } from 'src/app/services/page.service';
+import { PageService } from '../../services/page.service';
 
 @Component({
   selector: 'app-pager',

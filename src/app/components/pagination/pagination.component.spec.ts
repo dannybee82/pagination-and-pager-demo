@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { PaginationComponent } from './pagination.component';
 
-import { PageService } from 'src/app/services/page.service';
+import { PageService } from '../../services/page.service';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;

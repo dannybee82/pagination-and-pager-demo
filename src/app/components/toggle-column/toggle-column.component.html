@@ -1,0 +1,27 @@
+<button type="button" class="btn mt-1" (click)="toggleMenu()">
+    <i class="bi bi-three-dots-vertical"></i>    
+</button>
+@if(this.showMenu()) {
+    <ul class="dropdown-menu btn-group dropstart border-1 border-dark rounded">
+        <li>
+            @for(column of this.items(); track $index; let index = $index) { 
+                <div class="row">
+                    <div class="col-auto pt-1 ms-1">
+                        <input 
+                            type="checkbox" 
+                            class="form-check-input" 
+                            [id]="`item_${index}`" 
+                            class="dropdown-item" 
+                            [checked]="column.selected" 
+                            (click)="$event.stopPropagation()" 
+                            (change)="toggleItem(column)">
+                    </div>
+                    <div class="col-auto">
+                        <label class="form-check-label" [for]="`item_${index}`">{{column.name}}</label>
+                    </div>
+                </div>
+            }            
+        </li>
+    </ul>
+}
+

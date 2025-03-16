@@ -5,8 +5,8 @@ import { By } from '@angular/platform-browser';
 
 import { ShowTableComponent } from './show-table.component';
 
-import { PersonsService } from 'src/app/services/persons.service';
-import { PageService } from 'src/app/services/page.service';
+import { PersonsService } from '../../services/persons.service';
+import { PageService } from '../../services/page.service';
 
 describe('ShowTableComponent', () => {
   let component: ShowTableComponent;

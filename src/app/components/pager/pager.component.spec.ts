@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/t
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { PagerComponent } from './pager.component';
-import { PageService } from 'src/app/services/page.service';
+import { PageService } from '../../services/page.service';
 
 describe('PagerComponent', () => {
   let component: PagerComponent;

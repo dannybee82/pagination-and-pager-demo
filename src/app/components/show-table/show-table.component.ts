@@ -1,26 +1,25 @@
-import { Component, OnInit, WritableSignal, signal, inject } from '@angular/core';
-
-//Services.
-import { PersonsService } from 'src/app/services/persons.service';
-import { PageService } from 'src/app/services/page.service';
-
-//Interfaces / models.
-import { Person } from 'src/app/models/person.interface';
-import { SortState } from 'src/app/models/sort-state.interface';
-
-//Shared functions.
-import { Pagination } from 'src/app/shared_functions/Pagination';
-import { FilterFunctions } from 'src/app/shared_functions/FilterFunctions';
-import { PagerComponent } from 'src/app/components/pager/pager.component';
-import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
-import { FilterComponent } from 'src/app/components/filter/filter.component';
-import { SortFunctions } from 'src/app/shared_functions/SortFunctions';
+import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { PersonsService } from '../../services/persons.service';
+import { PageService } from '../../services/page.service';
+import { Person } from '../../models/person.interface';
+import { SortState } from '../../models/sort-state.interface';
+import { Pagination } from '../../shared_functions/Pagination';
+import { FilterFunctions } from '../../shared_functions/FilterFunctions';
+import { PagerComponent } from '../pager/pager.component';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { FilterComponent } from '../filter/filter.component';
+import { SortFunctions } from '../../shared_functions/SortFunctions';
+import { ToggleColumnComponent } from '../toggle-column/toggle-column.component';
+import { DisplayColumnsService } from '../../services/display-columns.service';
+import { TableHeadComponent } from './table-head/table-head.component';
 
 @Component({
 	imports: [
 		PagerComponent,
 		PaginationComponent,
 		FilterComponent,
+    ToggleColumnComponent,
+    TableHeadComponent
 	],
   selector: 'app-show-table',
   templateUrl: './show-table.component.html',
@@ -28,13 +27,15 @@ import { SortFunctions } from 'src/app/shared_functions/SortFunctions';
 })
 export class ShowTableComponent extends Pagination implements OnInit {
 
-  public allPersons: WritableSignal<Person[]> = signal([]);
-  public sortState: WritableSignal<SortState> = signal({
+  allPersons: WritableSignal<Person[]> = signal([]);
+  sortState: WritableSignal<SortState> = signal({
     sortField: '',
     isAscending: false
   });
 
-  public generatePersons: number = 25;
+  generatePersons: number = 25;
+
+  displayColumns: string[] = [];
 
   private _filter: FilterFunctions = new FilterFunctions();
   private _sort: SortFunctions = new SortFunctions();
@@ -44,13 +45,20 @@ export class ShowTableComponent extends Pagination implements OnInit {
   };
 
 	constructor(
-    private personsService: PersonsService, 
+    private displayColumnsService: DisplayColumnsService,
+    private personsService: PersonsService,
     pageService: PageService
   ) {
     super(pageService);
   }
 
   ngOnInit() {
+    this.displayColumns = this.displayColumnsService.displayColumns.getValue();
+
+    this.displayColumnsService.displayColumns.subscribe((data: string[]) => {
+      this.displayColumns = data;
+    });
+
     if(this.generatePersons < 0) {
       this.generatePersons = 0;
     }
@@ -81,6 +89,11 @@ export class ShowTableComponent extends Pagination implements OnInit {
     this.updatePagination();     
   }
 
+  getValue(person: Person, property: string): string {
+    const key: keyof Person = property as keyof typeof person;
+    return person[key].toString();
+  }
+
   filterPersons(value: string) : void {
     if(value !== '') {
       this.allPersons.set(this._filter.filterObject(this.personsService.getAllPersons(), value));
@@ -91,15 +104,15 @@ export class ShowTableComponent extends Pagination implements OnInit {
     this.setData(this.allPersons());  
   }
 
-  sortTable(sortField: string, isAscending: boolean): void {
-    if(this.sortState().sortField === sortField && this.sortState().isAscending === isAscending) {
+  sortTable(state: SortState): void {
+    if(this.sortState().sortField === state.sortField && this.sortState().isAscending === state.isAscending) {
       //Restore default state.
       this.sortState.set(this._defaultSortState);
       this.personsService.setUpdatePersons(true);     
     } else {
       //Change state.
-      this.sortState.set({ sortField: sortField, isAscending: isAscending});
-      this._sort.sort(this.allPersons(), sortField, isAscending);
+      this.sortState.set({ sortField: state.sortField, isAscending: state.isAscending});
+      this._sort.sort(this.allPersons(), state.sortField, state.isAscending);
     }
   }
 

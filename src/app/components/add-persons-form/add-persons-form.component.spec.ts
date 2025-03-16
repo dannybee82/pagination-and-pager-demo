@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { AddPersonsFormComponent } from './add-persons-form.component';
 import { FormsModule } from '@angular/forms'
 
-import { PersonsService } from 'src/app/services/persons.service';
+import { PersonsService } from '../../services/persons.service';
 
 describe('AddPersonsFormComponent', () => {
   let component: AddPersonsFormComponent;
