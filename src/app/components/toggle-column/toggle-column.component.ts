@@ -10,8 +10,8 @@ import { DisplayColumnsService } from '../../services/display-columns.service';
 })
 export class ToggleColumnComponent implements OnInit {
 
-  showMenu: WritableSignal<boolean> = signal(false);
-  items: WritableSignal<ColumnOption[]> = signal([]);
+  protected showMenu: WritableSignal<boolean> = signal(false);
+  protected items: WritableSignal<ColumnOption[]> = signal([]);
 
   private displayColumnsService = inject(DisplayColumnsService);
 

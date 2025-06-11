@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Signal, inject, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Signal, inject, viewChild, WritableSignal, signal } from '@angular/core';
 import { PageService } from '../../services/page.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class PagerComponent implements OnInit, AfterViewInit {
   public productsPerPage?: number;
   public selectElement: Signal<ElementRef | undefined> = viewChild('selectEl');
 
-  public options: number[] = [5, 10, 25, 50, 100];
+  protected options: WritableSignal<number[]> = signal([5, 10, 25, 50, 100]);
 
 	private pageService = inject(PageService);
 

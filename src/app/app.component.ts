@@ -14,5 +14,4 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pagination-and-pager-demo';
 }

@@ -1,6 +1,6 @@
 <div class="col-auto float-end">
     <select class="form-select mt-1" [value]="this.productsPerPage" (change)="this.changePageSize($event)" #selectEl> 
-       @for(item of this.options; track item) {
+       @for(item of this.options(); track item) {
         <option [value]="item">{{ item }}</option>
        }
     </select>

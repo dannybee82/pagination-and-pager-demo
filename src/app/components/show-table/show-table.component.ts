@@ -1,4 +1,4 @@
-import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, signal, inject } from '@angular/core';
 import { PersonsService } from '../../services/persons.service';
 import { PageService } from '../../services/page.service';
 import { Person } from '../../models/person.interface';
@@ -27,15 +27,15 @@ import { TableHeadComponent } from './table-head/table-head.component';
 })
 export class ShowTableComponent extends Pagination implements OnInit {
 
-  allPersons: WritableSignal<Person[]> = signal([]);
-  sortState: WritableSignal<SortState> = signal({
+  protected allPersons: WritableSignal<Person[]> = signal([]);
+  protected sortState: WritableSignal<SortState> = signal({
     sortField: '',
     isAscending: false
   });
 
-  generatePersons: number = 25;
+  protected generatePersons: number = 25;
 
-  displayColumns: string[] = [];
+  protected displayColumns: WritableSignal<string[]> = signal([]);
 
   private _filter: FilterFunctions = new FilterFunctions();
   private _sort: SortFunctions = new SortFunctions();
@@ -44,19 +44,18 @@ export class ShowTableComponent extends Pagination implements OnInit {
     isAscending: false
   };
 
-	constructor(
-    private displayColumnsService: DisplayColumnsService,
-    private personsService: PersonsService,
-    pageService: PageService
-  ) {
+  private displayColumnsService = inject(DisplayColumnsService);
+	private personsService = inject(PersonsService);
+
+  constructor(pageService: PageService) {
     super(pageService);
   }
 
   ngOnInit() {
-    this.displayColumns = this.displayColumnsService.displayColumns.getValue();
+    this.displayColumns.set(this.displayColumnsService.displayColumns.getValue());
 
     this.displayColumnsService.displayColumns.subscribe((data: string[]) => {
-      this.displayColumns = data;
+      this.displayColumns.set(data);
     });
 
     if(this.generatePersons < 0) {

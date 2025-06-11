@@ -10,10 +10,10 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class TableHeadComponent {
 
-  sortState: ModelSignal<SortState | undefined> = model();
-  sortField: InputSignal<string> = input.required();
+  readonly sortState: ModelSignal<SortState | undefined> = model();
+  readonly sortField: InputSignal<string> = input.required();
 
-  sortAction: OutputEmitterRef<SortState> = output();
+  readonly sortAction: OutputEmitterRef<SortState> = output();
 
   callback(sortField: string, isAscending: boolean): void {
     const state: SortState = {
