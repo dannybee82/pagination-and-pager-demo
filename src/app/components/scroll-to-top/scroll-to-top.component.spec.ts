@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ScrollToTopAdminComponent } from './scroll-to-top.component';
+import { ScrollToTopComponent } from './scroll-to-top.component';
 
 describe('ScrollToTopAdminComponent', () => {
-  let component: ScrollToTopAdminComponent;
-  let fixture: ComponentFixture<ScrollToTopAdminComponent>;
+  let component: ScrollToTopComponent;
+  let fixture: ComponentFixture<ScrollToTopComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [
-        ScrollToTopAdminComponent
+        ScrollToTopComponent
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ScrollToTopAdminComponent);
+    fixture = TestBed.createComponent(ScrollToTopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

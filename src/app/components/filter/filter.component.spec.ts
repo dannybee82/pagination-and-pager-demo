@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { FilterComponent } from './filter.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { vi } from 'vitest';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;
@@ -50,7 +51,7 @@ describe('FilterComponent', () => {
 
   it('Filter-Component: Test filter button', fakeAsync(() => {
     const component = fixture.componentInstance; 
-    spyOn(component.filterValue, 'emit');
+    vi.spyOn(component.filterValue, 'emit');
     
     let value: string = 'foobar';
     const inputField: DebugElement = fixture.debugElement.query(By.css('input'));
@@ -71,7 +72,7 @@ describe('FilterComponent', () => {
 
   it('Filter-Component: Test reset button', fakeAsync(() => {
     const component = fixture.componentInstance;
-    spyOn(component.filterValue, 'emit');
+    vi.spyOn(component.filterValue, 'emit');
     //Make reset button visible
     component.isFiltered.set(true);
 

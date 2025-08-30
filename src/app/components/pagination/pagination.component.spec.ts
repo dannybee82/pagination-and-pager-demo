@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
 import { PaginationComponent } from './pagination.component';
-
 import { PageService } from '../../services/page.service';
 
 describe('PaginationComponent', () => {
@@ -35,22 +33,24 @@ describe('PaginationComponent', () => {
     component.amountOfPages.set(3);
     fixture.detectChanges();
 
-    let expected: string[] = [];
-    for(let i = 0; i < 3; i++) {
-      expected.push((i + 1) + "");
-    }
+    const expected: string[] = ["1", "2", "3"];
 
     let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
 
-    let linktext: string[] = [];
-    linkElements.forEach(item => {
-      linktext.push( item.nativeElement.innerText );
-    });
+    expect(linkElements.length).toBe(5);
 
-    expected.forEach(item => {
-      let found: number = linktext.indexOf(item);
-      expect(found).toBeGreaterThan(-1);
-    });
+    const linktext: string[] = [];
+
+    for(let i = 0; i < linkElements.length; i++) {
+      const el: DebugElement = linkElements[i];
+
+      const href: HTMLAnchorElement = el.nativeElement;
+
+      if(href.text) {
+        linktext.push(href.text);  
+      }      
+    }
+    expect(linktext).toEqual(expected);
   });
 
   it('test pagination - previous and next button', () => {

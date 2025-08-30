@@ -18,14 +18,14 @@ export class DisplayColumnsService {
 
   displayColumns: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(['personNumber', 'firstName', 'lastName', 'age']);
 
-  updateDisplayedColumns() {
+  updateDisplayedColumns(): void {
     const arr: string[] = this.columnOptions.getValue()
       .filter(column => column.selected)
       .map(column => column.value);
-    this.displayColumns.next(arr);
+      this.displayColumns.next(arr);
   }
 
-  toggleColumn(column: ColumnOption) {
+  toggleColumn(column: ColumnOption): void {
     column.selected = !column.selected;
     this.updateDisplayedColumns();
   }

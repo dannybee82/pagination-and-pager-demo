@@ -9,9 +9,9 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 		ShowTableComponent,
 		ScrollToTopComponent,
 	],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  	selector: 'app-root',
+  	templateUrl: './app.component.html'
 })
 export class AppComponent {
+	title = 'pagination-and-pager-demo';
 }

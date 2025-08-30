@@ -14,10 +14,19 @@ describe('TableHeadComponent', () => {
 
     fixture = TestBed.createComponent(TableHeadComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges(); //When working with InputSignal and ModelSignals -> comment this line out.
   });
 
   it('should create', () => {
+    fixture.componentRef.setInput('sortState', {
+      sortField: 'firstname',
+      isAscending: false
+    });
+
+    fixture.componentRef.setInput('sortField', 'firstname');
+
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
   });
 });

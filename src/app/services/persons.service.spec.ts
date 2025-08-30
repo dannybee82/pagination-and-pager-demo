@@ -16,7 +16,7 @@ describe('PersonsService', () => {
 
   it('test generation of persons', () => {
     let generateAmounts: number[] = [-1, 0, 1, 2, 3,  4,  5, 10, 25,  50, 100];
-    let totalAmounts: number[] =    [0,  0, 1, 3, 6, 10, 15, 25, 50, 100, 200 ];
+    let totalAmounts: number[] =    [0,  0, 1, 3, 6, 10, 15, 25, 50, 100, 200];
 
     for(let i = 0; i < generateAmounts.length; i++) {
       service.generateRandomPersons(generateAmounts[i]);
@@ -32,10 +32,10 @@ describe('PersonsService', () => {
     service.getUpdatePersons().subscribe({
       next: (result) => {        
         if(currentIndex == 0) {
-          expect(result).toBeTrue();
+          expect(result).toBeTruthy();
           currentIndex++;
         } else {
-          expect(result).toBeFalse();
+          expect(result).toBeFalsy();
         }
       },
       complete: () => {
