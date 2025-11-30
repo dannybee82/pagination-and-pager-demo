@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -6,6 +6,7 @@ import { AddPersonsFormComponent } from './add-persons-form.component';
 import { FormsModule } from '@angular/forms'
 
 import { PersonsService } from '../../services/persons.service';
+import { vi } from 'vitest';
 
 describe('AddPersonsFormComponent', () => {
   let component: AddPersonsFormComponent;
@@ -21,13 +22,14 @@ describe('AddPersonsFormComponent', () => {
     fixture = TestBed.createComponent(AddPersonsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    vi.useFakeTimers();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Input Field Test: Input -> input-value', fakeAsync(() => { 
+  it('Input Field Test: Input -> input-value', () => { 
     let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     
@@ -48,13 +50,13 @@ describe('AddPersonsFormComponent', () => {
       inputField.nativeElement.value = val;
 
       fixture.detectChanges();
-      tick();
+      vi.advanceTimersByTime(1000);
 
       expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
     }       
-  }));
+  });
 
-  // it('Input Field Test: Component -> input-value', fakeAsync(() => {
+  // it('Input Field Test: Component -> input-value', () => {
   //   let testNumbers: number[] = [1, 2, 3, 4, 5];
   //   let testExpectations: number[] = [1, 2, 3, 4, 5];
 
@@ -67,9 +69,9 @@ describe('AddPersonsFormComponent', () => {
   
   //     expect(parseInt(inputField.nativeElement.value)).toBe(testExpectations[i]); 
   //   }      
-  // }));
+  // });
 
-  // it('Input Field Test: Input -> component-value', fakeAsync(async() => {
+  // it('Input Field Test: Input -> component-value', (async() => {
   //   let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   //   let testExpectations: number[] = [1, 1, 1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
@@ -95,9 +97,9 @@ describe('AddPersonsFormComponent', () => {
 
   //     expect(component.amountOfPersons).toBe(testExpectations[i]);
   //   }
-  // }));
+  // });
 
-  it('Test Person Service', fakeAsync(inject([PersonsService], (personsService: PersonsService) => {
+  it('Test Person Service', inject([PersonsService], (personsService: PersonsService) => {
     let keypresses: string[] = [' ', 'a', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     let accumulative: number[] = [1, 2, 3, 13, 24, 36, 49, 63, 78, 94, 111, 129, 148];
 
@@ -118,16 +120,16 @@ describe('AddPersonsFormComponent', () => {
       inputField.nativeElement.dispatchEvent(new Event('input'));
 
       fixture.detectChanges();
-      tick();
+      vi.advanceTimersByTime(1000)
 
       const form: DebugElement = fixture.debugElement.query(By.css('form'));
       form.triggerEventHandler('submit', fixture.debugElement.nativeElement);
 
       fixture.detectChanges();
-      tick();
+      vi.advanceTimersByTime(1000);
 
       expect(personsService.getAllPersons().length).toBe(accumulative[i]); 
     }   
-  })));
+  }));
 
 });

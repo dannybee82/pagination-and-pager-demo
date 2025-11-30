@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { PaginationComponent } from './pagination.component';
@@ -33,9 +33,9 @@ describe('PaginationComponent', () => {
     component.amountOfPages.set(3);
     fixture.detectChanges();
 
-    const expected: string[] = ["1", "2", "3"];
+    const expected: string[] = ["<", "1", "2", "3", ">"];
 
-    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
+    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('input.btn-square'));
 
     expect(linkElements.length).toBe(5);
 
@@ -46,8 +46,8 @@ describe('PaginationComponent', () => {
 
       const href: HTMLAnchorElement = el.nativeElement;
 
-      if(href.text) {
-        linktext.push(href.text);  
+      if(href.getAttribute('aria-label')) {
+        linktext.push(href.getAttribute('aria-label') ?? '');  
       }      
     }
     expect(linktext).toEqual(expected);
@@ -57,14 +57,14 @@ describe('PaginationComponent', () => {
     component.amountOfPages.set(3);
     fixture.detectChanges();
 
-    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
+    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('input.btn-square'));
     let lastElement: number = linkElements.length - 1;
 
     expect(linkElements[0].nativeElement.title).toMatch("Previous Page");
     expect(linkElements[lastElement].nativeElement.title).toMatch("Next Page");
   });
 
-  it('test pagination - click 2x at next page and click 2x at previous page', waitForAsync(inject([PageService], (pageService: PageService, done: DoneFn) => {
+  it('test pagination - click 2x at next page and click 2x at previous page', inject([PageService], (pageService: PageService) => {
     let expectationsNext: number[] = [1];
     let expectationsPrevious: number[] = [1];
 
@@ -83,14 +83,14 @@ describe('PaginationComponent', () => {
         }        
       },
       complete: () => {
-        done();
+       
       }
     });
 
     component.amountOfPages.set(3);
     fixture.detectChanges();
 
-    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
+    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('input.btn-square'));
     let lastElement: number = linkElements.length - 1;
 
     //First click: Next page = lastElement
@@ -105,9 +105,9 @@ describe('PaginationComponent', () => {
 
     //Second click: Previous page = first element
     linkElements[0].nativeElement.dispatchEvent(new Event('click'));
-  })));
+  }));
 
-  it('test pagination - click at pages in order -> 2, 3 and 1', waitForAsync(inject([PageService], (pageService: PageService, done: DoneFn) => {
+  it('test pagination - click at pages in order -> 2, 3 and 1', inject([PageService], (pageService: PageService) => {
     let expectPageIndex: number = 1;
 
     pageService.getCurrentPageIndex().subscribe({
@@ -123,14 +123,14 @@ describe('PaginationComponent', () => {
         }      
       },
       complete: () => {
-        done();
+        
       }
     });
 
     component.amountOfPages.set(3);
     fixture.detectChanges();
 
-    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('a.page-link'));
+    let linkElements: DebugElement[] = fixture.debugElement.queryAll(By.css('input.btn-square'));
 
     //Click at button with number 2
     linkElements[2].nativeElement.dispatchEvent(new Event('click'));
@@ -140,6 +140,6 @@ describe('PaginationComponent', () => {
 
     //Click at button with number 1
     linkElements[1].nativeElement.dispatchEvent(new Event('click'));    
-  })));
+  }));
 
 });

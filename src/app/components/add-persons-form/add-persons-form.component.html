@@ -1,18 +1,24 @@
-<div class="container-fluid">
-    <div class="row">
-        <form [formGroup]="this.form" (ngSubmit)="this.submit()">
-            <div class="col-auto float-start mt-1 p-2">
-                <label for="amount" class="form-label fw-bold">Add number of Persons:</label>
+<div class="flex flex-row">
+    <form [formGroup]="this.form" (ngSubmit)="this.submit()">
+        <div class="flex flex-row justify-between p-1 gap-3">
+            <div class="pt-2">
+                <label for="amount" class="font-bold">Add number of Persons:</label>
             </div>
-            <div class="col-2 float-start p-2">
-                <input type="number" id="amount" formControlName="amount" class="form-control" min="1" (keypress)="this.numbersOnly($event)">
+            <div>
+                <input type="number" id="amount" formControlName="amount" class="input input-md input-neutral w-15" min="1"
+                    (keypress)="this.numbersOnly($event)">
             </div>
-            <div class="col-auto float-start p-2">
-                <button type="submit" class="btn bg-success text-light" title="Add Persons">
-                    <i class="bi bi-plus"></i>
-                    <span class="ms-2">Add Persons</span>
+            <div>
+                <button type="submit" class="btn btn-outline btn-success" title="Add Persons">
+                    <div class="flex justify-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Add Persons
+                    </div>
                 </button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>

@@ -1,5 +1,4 @@
-import { TestBed, fakeAsync } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { PersonsService } from './persons.service';
 
 describe('PersonsService', () => {
@@ -25,7 +24,7 @@ describe('PersonsService', () => {
     }
   });
 
-  it('test update persons - Replaysubject', fakeAsync((done: DoneFn) => {    
+  it('test update persons - Replaysubject', () => {    
     let currentIndex: number = 0;
     let testValues: boolean[] = [true, false];
 
@@ -40,13 +39,12 @@ describe('PersonsService', () => {
       },
       complete: () => {
         setTimeout(() => {}, 500);
-        done();
       }
     });
 
     for(let i = 0; i < testValues.length; i++) {
       service.setUpdatePersons(testValues[i]);
     }
-  }));
+  });
 
 });

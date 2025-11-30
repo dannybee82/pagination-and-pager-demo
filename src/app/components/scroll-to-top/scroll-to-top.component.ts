@@ -10,7 +10,7 @@ export class ScrollToTopComponent {
 
   public isVisible: WritableSignal<boolean> = signal(false);
 
-  @HostListener("window:scroll", ["$event"])
+  @HostListener("window:scroll")
 
   onWindowScroll() : void {
     let pos: number = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;

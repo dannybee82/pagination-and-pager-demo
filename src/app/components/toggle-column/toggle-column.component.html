@@ -1,26 +1,18 @@
-<button type="button" class="btn mt-1" (click)="toggleMenu()">
-    <i class="bi bi-three-dots-vertical"></i>    
-</button>
-@if(this.showMenu()) {
-    <ul class="dropdown-menu btn-group dropstart border-1 border-dark rounded">
-        <li>
-            @for(column of this.items(); track $index; let index = $index) { 
-                <div class="row">
-                    <div class="col-auto pt-1 ms-1">
-                        <input 
-                            type="checkbox" 
-                            class="form-check-input" 
-                            [id]="`item_${index}`" 
-                            class="dropdown-item" 
-                            [checked]="column.selected" 
-                            (click)="$event.stopPropagation()" 
-                            (change)="toggleItem(column)">
-                    </div>
-                    <div class="col-auto">
-                        <label class="form-check-label" [for]="`item_${index}`">{{column.name}}</label>
-                    </div>
-                </div>
-            }            
-        </li>
+<div class="dropdown dropdown-center">
+    <div tabindex="0" role="button" class="btn m-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+        </svg>
+    </div>
+    <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm border-1 border-black">
+        @for(column of this.items(); track $index; let index = $index) {
+            <li>
+                <div class="flex flex-row">
+                     <input type="checkbox" class="form-check-input" [id]="`item_${index}`" class="dropdown-item" [checked]="column.selected"
+                    (click)="$event.stopPropagation()" (change)="toggleItem(column)">
+                    <label class="form-check-label" [for]="`item_${index}`">{{column.name}}</label>
+                </div>               
+            </li>
+        }
     </ul>
-}
+</div>

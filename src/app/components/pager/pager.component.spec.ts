@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { PagerComponent } from './pager.component';
@@ -51,7 +51,7 @@ describe('PagerComponent', () => {
     }
   });
 
-  it('test changePageSize() method and ReplaySubject', waitForAsync(inject([PageService], (pageService: PageService, done: DoneFn) => {
+  it('test changePageSize() method and ReplaySubject', inject([PageService], (pageService: PageService) => {
     let index: number = 0;
 
     pageService.getRecordsPerPage().subscribe({
@@ -61,7 +61,7 @@ describe('PagerComponent', () => {
         index++;           
       }, 
       complete: () => {
-        done(); 
+        
       }   
     });
 
@@ -71,7 +71,7 @@ describe('PagerComponent', () => {
       select.nativeElement.dispatchEvent(new Event('change'));
       fixture.detectChanges();
     }
-  })));
+  }));
 
 
 });

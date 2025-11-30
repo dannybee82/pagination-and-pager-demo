@@ -1,28 +1,37 @@
-<div class="col-auto float-end mt-1">
-  <ul class="pagination col-auto m-0 border border-1">
-    @if (this.amountOfPages() >= 2) {
-      <li class="page-item">
-        <a class="page-link" title="Previous Page" (click)="this.previousPage()">
-          <i class="bi bi-caret-left"></i>
-        </a>
-      </li>
-    }
-    @for (page of this.getPagination(); track page; let i = $index) {
-      <li class="page-item">
-        @if (!this.isCurrentPageIndex(page)) {
-          <a class="page-link" title="Go to page: {{ page }}" (click)="this.setPageIndex(page)">{{ page }}</a>
-        }
-        @if (this.isCurrentPageIndex(page)) {
-          <a class="page-link" title="Go to page: {{ page }}" [class.item-active]="this.isCurrentPageIndex(page)">{{ page }}</a>
-        }
-      </li>
-    }
-    @if (this.amountOfPages() >= 2) {
-      <li class="page-item">
-        <a class="page-link" title="Next Page" (click)="this.nextPage()">
-          <i class="bi bi-caret-right"></i>
-        </a>
-      </li>
-    }
-  </ul>
+<div class="join pt-1">
+  @if (this.amountOfPages() >= 2) {
+    <input 
+      class="join-item btn btn-square" 
+      type="radio" 
+      name="options" 
+      aria-label="<" 
+      title="Previous Page" 
+      (click)="previous.checked= false;this.previousPage()" 
+      [checked]="false" 
+      [disabled]="this.hasPrevious()"
+      #previous 
+    />
+  }
+  @for (page of this.getPagination(); track page) {
+     <input 
+        class="join-item btn btn-square" 
+        type="radio" 
+        name="options" 
+        [aria-label]="page" 
+        title="Go to page: {{ page }}"  
+        [checked]="this.isCurrentPageIndex(page)"
+        (click)="this.setPageIndex(page)" />      
+  }
+  @if (this.amountOfPages() >= 2) {
+    <input 
+      class="join-item btn btn-square" 
+      type="radio" 
+      name="options" 
+      aria-label=">" 
+      title="Next Page"  
+      (click)="next.checked = false; this.nextPage()" 
+      [checked]="false" 
+      [disabled]="this.hasNext()"
+      #next />
+  }
 </div>

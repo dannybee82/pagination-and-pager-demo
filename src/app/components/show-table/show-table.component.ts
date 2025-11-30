@@ -25,7 +25,7 @@ import { TableHeadComponent } from './table-head/table-head.component';
   templateUrl: './show-table.component.html',
   styleUrls: ['./show-table.component.scss']
 })
-export class ShowTableComponent extends Pagination implements OnInit {
+export class ShowTableComponent extends Pagination<Person> implements OnInit {
 
   protected allPersons: WritableSignal<Person[]> = signal([]);
   protected sortState: WritableSignal<SortState> = signal({
@@ -38,6 +38,7 @@ export class ShowTableComponent extends Pagination implements OnInit {
   protected displayColumns: WritableSignal<string[]> = signal([]);
 
   private _filter: FilterFunctions = new FilterFunctions();
+  protected isFilterOn: WritableSignal<boolean> = signal(false);
   private _sort: SortFunctions = new SortFunctions();
   private _defaultSortState: SortState = {
     sortField: '',
@@ -64,8 +65,8 @@ export class ShowTableComponent extends Pagination implements OnInit {
 
      //Listen for changes.
      this.getCurrentData().subscribe({
-      next: (result) => {
-        this.allPersons.set(result);
+      next: (result: Person[] | undefined) => {
+        this.allPersons.set(result ? result : []);       
       }
     });
 
@@ -82,6 +83,7 @@ export class ShowTableComponent extends Pagination implements OnInit {
 
     this.personsService.generateRandomPersons(this.generatePersons);    
     this.allPersons.set(this.personsService.getAllPersons());
+    this.totalRecords.set(this.personsService.getAllPersons().length);
 
     //Set data for pagination.
     this.setData(this.allPersons());    
@@ -96,8 +98,10 @@ export class ShowTableComponent extends Pagination implements OnInit {
   filterPersons(value: string) : void {
     if(value !== '') {
       this.allPersons.set(this._filter.filterObject(this.personsService.getAllPersons(), value));
+      this.isFilterOn.set(true);
     } else {
       this.allPersons.set(this.personsService.getAllPersons());
+      this.isFilterOn.set(false);
     }
 
     this.setData(this.allPersons());  

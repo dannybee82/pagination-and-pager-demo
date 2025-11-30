@@ -1,4 +1,4 @@
-import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { Component, OnInit, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
 import { PageService } from '../../services/page.service';
 
 @Component({
@@ -10,8 +10,16 @@ export class PaginationComponent implements OnInit {
 
   public amountOfPages: WritableSignal<number> = signal(0);
 
-  private _currentPageindex: number = 0;
-  private _paginationAmount = 3;
+  private _currentPageindex: WritableSignal<number> = signal(0);
+  private _paginationAmount: WritableSignal<number> = signal(3);
+
+  hasPrevious: Signal<boolean> = computed(() => {
+    return this._currentPageindex() - 1 >= 0 ? false : true;
+  });
+
+  hasNext: Signal<boolean> = computed(() => {
+    return this._currentPageindex() + 1 < this.amountOfPages() ? false : true;
+  });
 
 	private pageService = inject(PageService);
 
@@ -21,15 +29,15 @@ export class PaginationComponent implements OnInit {
     });
 
     this.pageService.getCurrentPageIndex().subscribe(result => {
-      this._currentPageindex = result;
+      this._currentPageindex.set(result);
     });
   }
 
   getPagination() : string[] {
-    let start: number = (this._currentPageindex - 1 <= 0) ? 0 : this._currentPageindex - 1;
-    let end: number = (start + this._paginationAmount < this.amountOfPages()) ? start + this._paginationAmount : this.amountOfPages();
+    let start: number = (this._currentPageindex() - 1 <= 0) ? 0 : this._currentPageindex() - 1;
+    let end: number = (start + this._paginationAmount() < this.amountOfPages()) ? start + this._paginationAmount() : this.amountOfPages();
 
-    if(start + this._paginationAmount > this.amountOfPages() && start - 1 >= 0) {
+    if(start + this._paginationAmount() > this.amountOfPages() && start - 1 >= 0) {
       start -= 1;
     }    
 
@@ -44,26 +52,26 @@ export class PaginationComponent implements OnInit {
 
   isCurrentPageIndex(value: string) : boolean {
     let parsed: number = parseInt(value) - 1;
-    return (parsed == this._currentPageindex) ? true : false;
+    return (parsed === this._currentPageindex()) ? true : false;
   }
 
   setPageIndex(value: string) : void {
     let parsed: number = parseInt(value) - 1;
-    this._currentPageindex = parsed;
-    this.pageService.setCurrentPageIndex(this._currentPageindex);
+    this._currentPageindex.set(parsed);
+    this.pageService.setCurrentPageIndex(this._currentPageindex());
   }
 
   previousPage() : void {
-    if(this._currentPageindex - 1 >= 0) {
-      this._currentPageindex -= 1;
-      this.pageService.setCurrentPageIndex(this._currentPageindex);
+    if(this._currentPageindex() - 1 >= 0) {
+      this._currentPageindex.set(this._currentPageindex() - 1);
+      this.pageService.setCurrentPageIndex(this._currentPageindex());
     }
   }
 
   nextPage() : void {
-    if(this._currentPageindex + 1 < this.amountOfPages()) {
-      this._currentPageindex += 1;
-      this.pageService.setCurrentPageIndex(this._currentPageindex);
+    if(this._currentPageindex() + 1 < this.amountOfPages()) {
+      this._currentPageindex.set(this._currentPageindex() + 1);
+      this.pageService.setCurrentPageIndex(this._currentPageindex());
     }
   }
 

@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { PageService } from './page.service';
 
@@ -15,7 +15,7 @@ describe('PageService', () => {
   });
 
 
-  it('test records per page - ReplaySubject', fakeAsync((done: DoneFn) => {   
+  it('test records per page - ReplaySubject', () => {   
     let amountOfTests: number = 8;
    
     let testNextValue: number = -1;
@@ -56,18 +56,17 @@ describe('PageService', () => {
         }        
       },
       complete: () => {
-        setTimeout(() => {}, 500);
-        done();
+        setTimeout(() => {}, 500);        
       }
     });
 
     for(let i = 0; i < amountOfTests; i++) {
       service.setRecordsPerPage(testNextValue);      
     }    
-  }));
+  });
 
 
-  it('test amount of pages - ReplaySubject', fakeAsync((done: DoneFn) => {
+  it('test amount of pages - ReplaySubject', () => {
     let amountOfTests: number = 8;
 
     let testNextValue: number = -1;
@@ -109,17 +108,16 @@ describe('PageService', () => {
       },
       complete: () => {
         setTimeout(() => {}, 500);
-        done();
       }
     });
 
     for(let i = 0; i < amountOfTests; i++) {
       service.setPagesAmount(testNextValue);      
     }
-  }));
+  });
 
 
-  it('test current page index - ReplaySubjec', fakeAsync((done: DoneFn) => {
+  it('test current page index - ReplaySubjec', () => {
     let amountOfTests: number = 8;
 
     let testNextValue: number = -1;
@@ -161,14 +159,13 @@ describe('PageService', () => {
       },
       complete: () => {
         setTimeout(() => {}, 500);
-        done();
       }
     });
 
     for(let i = 0; i < amountOfTests; i++) {
       service.setCurrentPageIndex(testNextValue);      
     }
-  }));
+  });
 
   
 });

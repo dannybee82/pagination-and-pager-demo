@@ -1,6 +1,6 @@
 # PaginationAndPagerDemo
 
-\- Angular 20 application (with [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1) + Bootstrap 5.
+\- Angular 21 application (with [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1) + daisyUI.
 
 \- Pagination and Pager.
 
@@ -22,6 +22,8 @@ See the root folder for example images.
 
 ## Installation + run app
 
+**Angular 21** needs a **Node.js** version of at least _20.19.0_
+
 **Command to install**
 
 _npm install_
@@ -42,6 +44,8 @@ _ng s --o_
 
 _npm run test_
 
+Probably there are some _Vitest_ bugs in _Angular 21_, so re-run the tests in a new terminal and or delete the Angular cache.
+
 To see the code coverage of the tests:
 
 _npm run coverage_
@@ -49,6 +53,22 @@ _npm run coverage_
 When the command above is finished, the report is generated at: /coverage/index.html
 
 ### **Changelog:**
+
+_November 2025_
+
+\- Upgrade to _Angular 21_ and upgraded other packages.
+
+\- Replaced _Bootstrap 5_ with _daisyUI_ (with _Tailwind v4_). Replaced _Bootstrap icons_ with _@heroicons/react_.
+
+\- Changed packages regarding _Vitest_. And modified the tests.
+
+\- Migration to _Zoneless_ (No _zone.js_ and removed all references).
+
+\- Made the _Pagination class_ generic.
+
+\- Replaced old favicon.
+
+\- Major changes in components due to implementation of _daisyUI_.
 
 _August 2025_
 

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterComponent } from './filter.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -18,13 +18,14 @@ describe('FilterComponent', () => {
     fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    vi.useFakeTimers();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Input Field Test: of Filter: Input -> input-value', fakeAsync(() => {
+  it('Input Field Test: of Filter: Input -> input-value', () => {
     let keypresses: string[] = ['f', 'o', 'o', ' ', 'b', 'a', 'r'];
     let testExpectations: string[] = ['f', 'fo', 'foo' , 'foo ', 'foo b', 'foo ba', 'foo bar'];
     
@@ -43,13 +44,13 @@ describe('FilterComponent', () => {
       inputField.nativeElement.value = val;
 
       fixture.detectChanges();
-      tick();
+      vi.advanceTimersByTime(1000);
 
       expect(inputField.nativeElement.value).toEqual(testExpectations[i]);
     }
-  }));
+  });
 
-  it('Filter-Component: Test filter button', fakeAsync(() => {
+  it('Filter-Component: Test filter button', () => {
     const component = fixture.componentInstance; 
     vi.spyOn(component.filterValue, 'emit');
     
@@ -58,19 +59,19 @@ describe('FilterComponent', () => {
     inputField.nativeElement.value = value;
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     const button: DebugElement = fixture.debugElement.query(By.css('button.btn-primary'));
     (button.nativeElement as HTMLButtonElement).click();
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     fixture.detectChanges();
     expect(component.filterValue.emit).toHaveBeenCalledWith('foobar');
-  }));
+  });
 
-  it('Filter-Component: Test reset button', fakeAsync(() => {
+  it('Filter-Component: Test reset button', () => {
     const component = fixture.componentInstance;
     vi.spyOn(component.filterValue, 'emit');
     //Make reset button visible
@@ -81,21 +82,21 @@ describe('FilterComponent', () => {
     inputField.nativeElement.value = value;
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     expect(inputField.nativeElement.value).toEqual('foobar');
 
-    const button: DebugElement = fixture.debugElement.query(By.css('button.btn-danger'));
+    const button: DebugElement = fixture.debugElement.query(By.css('button.btn-error'));
     (button.nativeElement as HTMLButtonElement).click();
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     expect(inputField.nativeElement.value).toEqual('');
     expect(component.filterValue.emit).toHaveBeenCalledWith('');
-  }))
+  })
 
-  it('Filter-component: Test boolean value: isFiltered', fakeAsync(() => {
+  it('Filter-component: Test boolean value: isFiltered', () => {
     const component = fixture.componentInstance;
 
     let value: string = 'foobar';
@@ -103,24 +104,24 @@ describe('FilterComponent', () => {
     inputField.nativeElement.value = value;
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     const buttonFilter: DebugElement = fixture.debugElement.query(By.css('button.btn-primary'));
     (buttonFilter.nativeElement as HTMLButtonElement).click();
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     expect(component.isFiltered()).toBe(true);
 
-    const buttonReset: DebugElement = fixture.debugElement.query(By.css('button.btn-danger'));
+    const buttonReset: DebugElement = fixture.debugElement.query(By.css('button.btn-error'));
     (buttonReset.nativeElement as HTMLButtonElement).click();
 
     fixture.detectChanges();
-    tick();
+    vi.advanceTimersByTime(1000);
 
     expect(component.isFiltered()).toBe(false);
-  }));
+  });
 
 
 });

@@ -16,31 +16,17 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "stylePreprocessorOptions": {
-              "sass": {
-                "silenceDeprecations": [
-                  "mixed-decls",
-                  "color-functions",
-                  "global-builtin",
-                  "import"
-                ]
-              }
-            },
             "outputPath": {
               "base": "dist/pagination-and-pager-demo"
             },
             "index": "src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -90,7 +76,12 @@
           }
         },
         "test": {
-          "builder": "@analogjs/vitest-angular:test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "::development",
+            "runnerConfig": "vitest.config.ts"
+          }
         }
       }
     }

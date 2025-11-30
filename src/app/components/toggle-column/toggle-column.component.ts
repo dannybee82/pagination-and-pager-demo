@@ -10,18 +10,12 @@ import { DisplayColumnsService } from '../../services/display-columns.service';
 })
 export class ToggleColumnComponent implements OnInit {
 
-  protected showMenu: WritableSignal<boolean> = signal(false);
   protected items: WritableSignal<ColumnOption[]> = signal([]);
 
   private displayColumnsService = inject(DisplayColumnsService);
 
   ngOnInit(): void {
     this.items.set(this.displayColumnsService.columnOptions.getValue());
-  }
-
-  toggleMenu(): void {
-    const value: boolean = !this.showMenu();
-    this.showMenu.set(value);
   }
 
   toggleItem(columnOption: ColumnOption) : void {

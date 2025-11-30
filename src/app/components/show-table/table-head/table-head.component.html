@@ -1,13 +1,19 @@
-    {{this.sortField() | titlecase }}:
-    <i 
-      class="bi bi-arrow-up me-1" 
-      [class.text-light]="this.sortState()?.sortField !== this.sortField() && this.sortState()?.isAscending !== true"
-      [class.text-primary]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === true"
-      (click)="callback(this.sortField(), true)">
-    </i>
-    <i 
-      class="bi bi-arrow-down text-light" 
-      [class.text-light]="this.sortState()?.sortField !== this.sortField() && this.sortState()?.isAscending !== false"
-      [class.text-primary]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === false"
-      (click)="callback(this.sortField(), false)">
-    </i>
+{{this.sortField() | titlecase }}:
+<button type="button" class="btn btn-soft btn-neutral btn-xs bg-black text-white border-1 border-black me-1 p-0"
+  (click)="callback(this.sortField(), true)"
+  [class.btn-dash]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === true"
+  [class.border-white]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === true">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+  </svg>
+</button>
+<button type="button" class="btn btn-soft btn-neutral btn-xs bg-black text-white border-1 border-black p-0"
+  (click)="callback(this.sortField(), false)"
+  [class.btn-dash]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === false"
+  [class.border-white]="this.sortState()?.sortField === this.sortField() && this.sortState()?.isAscending === false">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+  </svg>
+</button>

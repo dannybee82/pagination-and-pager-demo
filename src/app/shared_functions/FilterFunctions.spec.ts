@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FilterFunctions } from './FilterFunctions';
 
 describe('FilterFunctions Class', () => {
@@ -20,29 +20,29 @@ describe('FilterFunctions Class', () => {
         filter = new FilterFunctions(); 
     });
 
-    it('FilterFunctions: test001 filter at: 1\'s', fakeAsync(() => {
+    it('FilterFunctions: test001 filter at: 1\'s', (() => {
         let result: any[] = filter.filterObject(test001, '1');
         expect(result.length).toEqual(3);        
     }));
 
-    it('FilterFunctions: test001 filter at: 4\'s', fakeAsync(() => {
+    it('FilterFunctions: test001 filter at: 4\'s', () => {
         let result: any[] = filter.filterObject(test001, '4');
         expect(result.length).toEqual(0);        
-    }));
+    });
 
-    it('FilterFunctions: test002 filter at: foobar', fakeAsync(() => {
+    it('FilterFunctions: test002 filter at: foobar', () => {
         let result: any = filter.filterObject([test002], 'foobar');
         expect(result.length).toEqual(1);        
-    }));
+    });
 
-    it('FilterFunctions: test002 filter at: empty string', fakeAsync(() => {
+    it('FilterFunctions: test002 filter at: empty string', () => {
         let result: any = filter.filterObject([test002], '');
         expect(result.length).toEqual(0);        
-    }));
+    });
 
-    it('FilterFunctions: filter with: null', fakeAsync(() => {
+    it('FilterFunctions: filter with: null', () => {
         let result: any = filter.filterObject(null, 'foobar');
         expect(result).toEqual(undefined);
-    }));
+    });
 
 });

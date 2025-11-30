@@ -7,7 +7,7 @@ import { Person } from '../models/person.interface';
 
 describe('Pagination Class', () => {
     let service: PageService;
-    let pagination: Pagination;
+    let pagination: Pagination<Person>;
 
     let testObject001: Person[] = [
         {personNumber: 1,firstName:  'firstname 1',lastName:  'lastname 1',age:18},
@@ -137,7 +137,7 @@ describe('Pagination Class', () => {
         //Test with currentPageIndex set.
         for(let i = 0; i < recordsPerPage.length; i++) {
             for(let j = 0; j < currentPageIndexes.length; j++) {
-                let objTest: Person[] = pagination.limitRecords(testObject002, recordsPerPage[i], currentPageIndexes[j]);
+                let objTest: Person[] = pagination.limitRecords(testObject002, recordsPerPage[i], currentPageIndexes[j]) ?? [];
                 let lastElement: number = objTest.length - 1;
 
                 let firstElementValue: number = pagination.calculateStart(recordsPerPage[i], currentPageIndexes[j]);
