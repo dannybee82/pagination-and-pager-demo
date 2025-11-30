@@ -44,8 +44,6 @@ _ng s --o_
 
 _npm run test_
 
-Probably there are some _Vitest_ bugs in _Angular 21_, so re-run the tests in a new terminal and or delete the Angular cache.
-
 To see the code coverage of the tests:
 
 _npm run coverage_
