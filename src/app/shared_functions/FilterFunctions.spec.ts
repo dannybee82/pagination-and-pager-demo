@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FilterFunctions } from './FilterFunctions';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('FilterFunctions Class', () => {
 

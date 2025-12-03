@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ToggleColumnComponent } from './toggle-column.component';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('ToggleColumnComponent', () => {
   let component: ToggleColumnComponent;

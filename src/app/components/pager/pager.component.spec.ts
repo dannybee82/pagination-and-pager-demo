@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { PagerComponent } from './pager.component';
 import { PageService } from '../../services/page.service';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('PagerComponent', () => {
   let component: PagerComponent;

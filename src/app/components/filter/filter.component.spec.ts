@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterComponent } from './filter.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from "Vitest";
 
 describe('FilterComponent', () => {
   let component: FilterComponent;

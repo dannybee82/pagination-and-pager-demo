@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TableHeadComponent } from './table-head.component';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('TableHeadComponent', () => {
   let component: TableHeadComponent;

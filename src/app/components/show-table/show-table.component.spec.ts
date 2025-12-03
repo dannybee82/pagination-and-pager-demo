@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { ShowTableComponent } from './show-table.component';
 import { PersonsService } from '../../services/persons.service';
 import { PageService } from '../../services/page.service';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('ShowTableComponent', () => {
   let component: ShowTableComponent;

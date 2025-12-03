@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { PaginationComponent } from './pagination.component';
 import { PageService } from '../../services/page.service';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;

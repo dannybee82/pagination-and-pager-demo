@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Person } from '../models/person.interface';
 import { SortFunctions } from './SortFunctions';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('SortFunctions Class', () => {
 

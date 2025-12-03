@@ -3,10 +3,10 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine",
-      "vitest",
       "vitest/globals"
-    ]
+    ],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "target": "ES2024"
   },
   "include": [
     "src/**/*.d.ts",

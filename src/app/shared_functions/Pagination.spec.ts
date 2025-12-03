@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
 import { PageService } from '../services/page.service';
 import { Pagination } from './Pagination';
-
 import { Person } from '../models/person.interface';
+import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('Pagination Class', () => {
     let service: PageService;
