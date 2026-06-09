@@ -1,6 +1,6 @@
 # PaginationAndPagerDemo
 
-\- Angular 21 application (with [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1) + daisyUI.
+\- Angular 22 application (with [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0) + _daisyUI/Tailwind CSS_.
 
 \- Pagination and Pager.
 
@@ -22,7 +22,7 @@ See the root folder for example images.
 
 ## Installation + run app
 
-**Angular 21** needs a **Node.js** version of at least _20.19.0_
+**Angular 22** needs a **Node.js** version of at least _22.22.3_
 
 **Command to install**
 
@@ -51,6 +51,18 @@ _npm run coverage_
 When the command above is finished, the report is generated at: /coverage/index.html
 
 ### **Changelog:**
+
+_June 2026_
+
+\- Upgrade to _Angular 22_ and upgraded other packages.
+
+\- Migrated _@Injectable_ to _@Service_.
+
+\- Using the default: _ChangeDetectionStrategy.OnPush_ in stead of _ChangeDetectionStrategy.Eager_.
+
+\- Using the latest file naming conventions - and deleting the old schematics from _angular.json_
+
+\- Replaced the _reactive form_ with the latests _signal form_ and updated the tests accordingly.
 
 _November 2025_
 

@@ -1,0 +1,51 @@
+<div class="flex flex-row justify-between ms-1 mt-2 mb-1 xl:gap-2 lg:gap-2 md:gap-1 sm:gap-0 xs:gap-0 xl:w-1/2 lg:w-4/5 md:w-full sm:w-full xs:w-full">
+  <div class="pt-3 xl:block lg:block md:hidden sm:hidden xs:hidden">
+    Total Persons: <span class="font-bold">{{ totalRecords() }}</span> Showing: <span class="font-bold">#{{getCurrentShowing()}}</span>
+  </div>
+  <div class="pt-3 xl:hidden lg:hidden md:block sm:block sm:pt-3 xs:block xs:pt-0 xs:text-xs xs:me-1">
+    <span class="font-bold">#{{getCurrentShowing()}}</span>
+  </div>
+  @if (allPersons().length > 0) {
+  <div>
+    <app-pager></app-pager>
+  </div>
+  <div>
+    <app-pagination></app-pagination>
+  </div>
+  }
+  <div>
+    <app-filter (filterValue)="filterPersons($event)"></app-filter>
+  </div>
+  <div>
+    <app-toggle-column></app-toggle-column>
+  </div>  
+</div>
+@if (allPersons().length > 0) {
+  <div class="flex flex-row xl:w-1/2 lg:w-4/5 md:w-full sm:w-full xs:w-full pe-1">
+    <table class="table table-zebra table-md">
+      <thead class="bg-black text-white">
+        <tr>
+          @for(column of displayColumns(); track $index) {
+            @if(column === 'personNumber') {
+              <th>#</th>
+            } @else {
+              <th app-table-head [(sortState)]="sortState" [sortField]="column" (sortAction)="sortTable($event)">
+              </th>
+            }
+          }
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        @for (person of allPersons(); track $index) {
+          <tr>
+            @for(column of displayColumns(); track $index) {
+              <td [class]="column === 'personNumber' ? 'font-bold' : ''">
+                {{ getValue(person, column) }}
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>  
+}

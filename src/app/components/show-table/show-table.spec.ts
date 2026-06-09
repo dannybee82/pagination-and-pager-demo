@@ -1,0 +1,99 @@
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { ShowTable } from './show-table';
+import { Persons } from '../../services/persons';
+import { Page } from '../../services/page';
+import { beforeEach, describe, expect, it } from "Vitest";
+
+describe('ShowTableComponent', () => {
+  let component: ShowTable;
+  let fixture: ComponentFixture<ShowTable>;
+
+  let generatePersons: number[] = [
+    -1,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    15,
+    20,
+    25
+  ];
+
+  let recordsPerPage: number[] = [
+    5,
+    10,
+    25,
+    50,
+    100
+  ];
+
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      declarations: [],
+      imports: [
+        ShowTable
+      ],
+      providers: [Persons, Page]
+    })
+    .compileComponents();
+
+    //Turned off below:
+    // fixture = TestBed.createComponent(ShowTableComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    fixture = TestBed.createComponent(ShowTable);
+    component = fixture.componentInstance;
+
+    expect(component).toBeTruthy();
+  });
+
+  // it('Check generation of persons in component and persons[] array length', () => {
+  //   for(let i = 0; i < generatePersons.length; i++) {
+  //     fixture = TestBed.createComponent(ShowTableComponent);      
+  //     component = fixture.componentInstance;
+  //     component.ngOnInit();
+      
+  //     (component as any).generatePersons = generatePersons[i];
+  //     console.debug('(component as any).generatePersons', (component as any).generatePersons);
+  //     component.ngOnInit();
+ 
+  //     let currentLength: number = component.totalRecords();
+  //     console.debug('currentLength', currentLength);
+
+  //     expect((component as any).generatePersons).toBe(currentLength);
+
+  //     TestBed.resetTestingModule();      
+  //   }
+  // });
+
+  it('check generation of persons in table - change pagination', inject([Page], (pageService: Page) => {
+    fixture = TestBed.createComponent(ShowTable);
+    component = fixture.componentInstance;
+
+    //@ts-ignore
+    component.generatePersons = 100;
+    component.ngOnInit();
+
+    fixture.detectChanges();
+
+    for(let i = 0; i < recordsPerPage.length; i++) {
+      pageService.setRecordsPerPage(recordsPerPage[i]); 
+      component.updatePagination();
+
+      fixture.detectChanges();
+
+      const table: DebugElement[] = fixture.debugElement.queryAll(By.css('table tbody tr'));
+      expect(table.length).toEqual(recordsPerPage[i]);
+    }
+  }));
+
+
+});

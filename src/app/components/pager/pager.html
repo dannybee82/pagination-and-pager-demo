@@ -1,0 +1,5 @@
+ <select class="select select-neutral mt-1 xs:w-20 xs:me-1" [value]="productsPerPage" (change)="changePageSize($event)" #selectEl> 
+       @for(item of options(); track item) {
+        <option [value]="item">{{ item }}</option>
+       }
+</select>

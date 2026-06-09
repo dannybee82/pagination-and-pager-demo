@@ -1,8 +1,8 @@
 import { WritableSignal, signal } from '@angular/core';
-import { PageService } from '../services/page.service';
+import { Page } from '../services/page';
 import { ReplaySubject } from 'rxjs';
 
-export class Pagination<T> {
+export class PaginationFunctions<T> {
 
   private _recordsPerPage: WritableSignal<number> = signal(-1);
   private _currentPageIndex: WritableSignal<number> = signal(-1);
@@ -12,11 +12,11 @@ export class Pagination<T> {
 
   private _data: ReplaySubject<T[] | undefined>;
 
-  private pageService: PageService;
+  private pageService: Page;
 
   public totalRecords: WritableSignal<number> = signal(0);
 
-  constructor(pageService: PageService) {
+  constructor(pageService: Page) {
     this.pageService = pageService;
     this.pageService.resetAll();
 

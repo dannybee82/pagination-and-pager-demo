@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { PageService } from '../services/page.service';
-import { Pagination } from './Pagination';
+import { Page } from '../services/page';
+import { PaginationFunctions } from './Pagination';
 import { Person } from '../models/person.interface';
 import { beforeEach, describe, expect, it } from "Vitest";
 
 describe('Pagination Class', () => {
-    let service: PageService;
-    let pagination: Pagination<Person>;
+    let service: Page;
+    let pagination: PaginationFunctions<Person>;
 
     let testObject001: Person[] = [
         {personNumber: 1,firstName:  'firstname 1',lastName:  'lastname 1',age:18},
@@ -46,8 +46,8 @@ describe('Pagination Class', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({});   
-        service = TestBed.inject(PageService);
-        pagination = new Pagination(service); 
+        service = TestBed.inject(Page);
+        pagination = new PaginationFunctions(service); 
     });
 
     it('should be created', () => {

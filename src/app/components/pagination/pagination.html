@@ -1,0 +1,37 @@
+<div class="join pt-1">
+  @if (amountOfPages() >= 2) {
+    <input 
+      class="join-item btn btn-square" 
+      type="radio" 
+      name="options" 
+      aria-label="<" 
+      title="Previous Page" 
+      (click)="previous.checked= false;previousPage()" 
+      [checked]="false" 
+      [disabled]="hasPrevious()"
+      #previous 
+    />
+  }
+  @for (page of getPagination(); track page) {
+     <input 
+        class="join-item btn btn-square" 
+        type="radio" 
+        name="options" 
+        [aria-label]="page" 
+        title="Go to page: {{ page }}"  
+        [checked]="isCurrentPageIndex(page)"
+        (click)="setPageIndex(page)" />      
+  }
+  @if (amountOfPages() >= 2) {
+    <input 
+      class="join-item btn btn-square" 
+      type="radio" 
+      name="options" 
+      aria-label=">" 
+      title="Next Page"  
+      (click)="next.checked = false; nextPage()" 
+      [checked]="false" 
+      [disabled]="hasNext()"
+      #next />
+  }
+</div>

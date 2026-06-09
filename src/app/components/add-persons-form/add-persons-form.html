@@ -1,0 +1,23 @@
+<div class="flex flex-row">
+    <form (submit)="submit($event)">
+        <div class="flex flex-row justify-between p-1 gap-3">
+            <div class="pt-2">
+                <label for="amount" class="font-bold">Add number of Persons:</label>
+            </div>
+            <div>
+                <input type="number" id="amount" [formField]="form.amount" class="input input-md input-neutral w-15" (keypress)="numbersOnly($event)">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline btn-success" title="Add Persons">
+                    <div class="flex justify-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Add Persons
+                    </div>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
